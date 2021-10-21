@@ -1,0 +1,11 @@
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+
+@Component({
+  selector: 'hs-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class NavbarComponent {
+  constructor() {}
+}

@@ -1,0 +1,10 @@
+<div class="h-full flex">
+  <hs-mode-versions-sidebar [models]="models$ | async"></hs-mode-versions-sidebar>
+  <div class="p-10 flex-grow">
+    <div class="mb-4">
+      <div class="font-bold text-gray-800">Census</div>
+      <div class="text-xs text-gray-500">12 model versions</div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.mv-sidebar {
+  &__item {
+    min-width: 240px;
+    max-width: 320px;
+    &:hover,
+    &--active {
+      @apply text-blue-500 rounded-lg shadow-sm bg-blue-50;
+    }
+  }
+}
