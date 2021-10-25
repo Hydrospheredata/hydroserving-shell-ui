@@ -8,12 +8,12 @@ import { LayoutModule } from './layout/layout.module';
 import { ApplicationsModule } from './features/applications/applications.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
-import { ModelVersionsModule } from './features/model-versions/model-versions.module';
 import { PluginsModule } from './features/plugins/plugins.module';
 import { MatTableModule } from '@angular/material/table';
 import { hsAbsoluteUrlFactory, HS_ABSOLUTE_URL } from './base_url.token';
 import { APP_BASE_HREF } from '@angular/common';
 import { baseHrefFactory } from './base-href-factory.util';
+import {ModelsModule} from "./features/models/models.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,7 @@ import { baseHrefFactory } from './base-href-factory.util';
     BrowserModule,
     BrowserAnimationsModule,
     PluginsModule,
-    ModelVersionsModule,
+    ModelsModule,
     LayoutModule,
     ApplicationsModule,
     HttpClientModule,

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ModelVersionDetailsComponent } from './features/model-versions/components/model-version-details/model-version-details.component';
-import { ModelVersionsTableComponent } from './features/model-versions/components/model-versions-table/model-versions-table.component';
-import { ModelVersionsComponent } from './features/model-versions/model-versions.component';
+import { ModelDetailsComponent } from './features/models/components/model-details/model-details.component';
+import { ModelsTableComponent } from './features/models/components/models-table/models-table.component';
+import { ModelsComponent } from './features/models/models.component';
 import { PluginsComponent } from './features/plugins/plugins.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
@@ -16,12 +16,12 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: ModelVersionsComponent,
-            children: [{ path: ':modelName', component: ModelVersionsTableComponent }],
+            component: ModelsComponent,
+            children: [{ path: ':modelName', component: ModelsTableComponent }],
           },
           {
             path: ':modelName/:modelVersion',
-            component: ModelVersionDetailsComponent,
+            component: ModelDetailsComponent,
           },
         ],
       },

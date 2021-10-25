@@ -1,0 +1,9 @@
+.model-info {
+    @apply bg-white rounded-md shadow-md py-6 px-8 align-middle;
+    &__key {
+        @apply text-gray-500  mr-4 w-48 text-right
+    }
+    &__value {
+        @apply text-gray-900
+    }
+}

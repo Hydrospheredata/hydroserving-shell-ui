@@ -1,0 +1,18 @@
+<div class="model-info" *ngIf="model">
+  <div class="flex">
+    <div class="model-info__key">name:</div>
+    <div class="model-info__value font-bold">{{ model.name }}</div>
+  </div>
+  <div class="flex">
+    <div class="model-info__key">version:</div>
+    <div class="model-info__value font-bold">{{ model.version }}</div>
+  </div>
+  <div class="flex">
+    <div class="model-info__key">training data prefix:</div>
+    <div class="model-info__value italic font-light text-gray-600">{{ model.trainingDataPrefix }}</div>
+  </div>
+  <div class="flex">
+    <div class="model-info__key">inference data prefix:</div>
+    <div class="model-info__value italic font-light text-gray-600">{{ model.inferenceDataPrefix }}</div>
+  </div>
+</div>

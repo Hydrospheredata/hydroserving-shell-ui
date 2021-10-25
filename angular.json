@@ -7,7 +7,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hydrosphere-ui-shell": {
+    "hydroserving-shell-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/hydrosphere-ui-shell",
+            "outputPath": "dist/hydroserving-shell-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -47,12 +47,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "6mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "6mb"
                 }
               ],
               "fileReplacements": [
@@ -79,11 +79,11 @@
           "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "hydrosphere-ui-shell:build:production",
+              "browserTarget": "hydroserving-shell-ui:build:production",
               "extraWebpackConfig": "webpack.prod.config.js"
             },
             "development": {
-              "browserTarget": "hydrosphere-ui-shell:build:development"
+              "browserTarget": "hydroserving-shell-ui:build:development"
             }
           },
           "defaultConfiguration": "development",
@@ -95,7 +95,7 @@
         "extract-i18n": {
           "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "hydrosphere-ui-shell:build",
+            "browserTarget": "hydroserving-shell-ui:build",
             "extraWebpackConfig": "webpack.config.js"
           }
         },
@@ -130,5 +130,5 @@
       }
     }
   },
-  "defaultProject": "hydrosphere-ui-shell"
+  "defaultProject": "hydroserving-shell-ui"
 }

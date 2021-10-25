@@ -1,0 +1,17 @@
+<div class="relative overflow-scroll h-full p-10 w-full">
+  <div class="py-4 font-bold"> {{modelName$ | async}} model versions </div>
+  <table class="mv-table">
+    <thead>
+      <th>Version</th>
+      <th>Training data prefix</th>
+      <th>Inference data prefix</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let model of models$ | async" [routerLink]="[model.version]">
+        <td class="font-bold text-gray-900">{{ model.version }}</td>
+        <td class="text-gray-900">{{ model.trainingDataPrefix }}</td>
+        <td class="text-gray-900">{{ model.inferenceDataPrefix }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
