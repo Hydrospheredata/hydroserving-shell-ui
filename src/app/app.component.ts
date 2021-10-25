@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModelsService } from './features/models/state/models.service';
 import { PluginsService } from './features/plugins/state/plugins.service';
-import { ShellHttpService } from './shell-http.service';
 
 @Component({
   selector: 'hs-root',
@@ -9,7 +8,10 @@ import { ShellHttpService } from './shell-http.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private modelVersionService: ModelsService, private plugins: PluginsService) {}
+  constructor(
+    private modelVersionService: ModelsService,
+    private plugins: PluginsService,
+  ) {}
 
   ngOnInit() {
     this.plugins.get();

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { PluginsQuery } from 'src/app/features/plugins/state/plugins.query';
 import { ModelsQuery } from '../../state/models.query';
-import {of} from "rxjs";
-import { query } from '@angular/animations';
 
 @Component({
   templateUrl: './model-details.component.html',
