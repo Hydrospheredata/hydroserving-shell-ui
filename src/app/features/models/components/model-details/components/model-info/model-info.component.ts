@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Model } from '../../../../../../domain';
+import { Model } from '@domain/index';
 
 @Component({
   selector: 'hs-model-info',
