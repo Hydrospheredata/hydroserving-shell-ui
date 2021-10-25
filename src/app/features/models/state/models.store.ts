@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { EntityState, EntityStore, Store, StoreConfig } from '@datorama/akita';
-import { Model } from "../../../domain";
+import { Store, StoreConfig } from '@datorama/akita';
+import { Model } from '../../../domain';
 
 export interface ModelsState {
-  models: Model[]
+  models: Model[];
 }
 
 export function createInitialState(): ModelsState {
   return {
-    models: []
+    models: [],
   };
 }
 

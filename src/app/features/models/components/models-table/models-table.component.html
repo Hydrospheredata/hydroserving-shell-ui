@@ -1,5 +1,8 @@
 <div class="relative overflow-scroll h-full p-10 w-full">
-  <div class="py-4 font-bold"> {{modelName$ | async}} model versions </div>
+  <div class="mb-5">
+    <div class="font-bold text-gray-800">{{modelName$ | async | titlecase}}</div>
+    <div class="text-xs text-gray-500">{{(models$ | async)?.length}} model versions</div>
+  </div>
   <table class="mv-table">
     <thead>
       <th>Version</th>

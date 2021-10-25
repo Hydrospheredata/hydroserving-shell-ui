@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'hs-model-status',
@@ -6,10 +6,8 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   styleUrls: ['./model-status.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModelStatusComponent implements OnInit {
+export class ModelStatusComponent {
   @Input() status: string = 'undefined';
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

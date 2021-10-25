@@ -20,20 +20,21 @@ export class PluginsService {
   get() {
     // this.http
     // .get<Plugin[]>('')
-    of([profilerPlugin]).subscribe((plugins) => {
+    of([profilerPlugin]).subscribe(plugins => {
       this.store.set(plugins);
-      plugins.forEach((p) => p.state == 'active' && this.activate(p));
+      plugins.forEach(p => p.state == 'active' && this.activate(p));
     });
   }
 
   activate(plugin: Plugin) {
-    this.store.update(plugin.name, (e) => ({ ...e, state: 'active' }));
+    this.store.update(plugin.name, e => ({ ...e, state: 'active' }));
 
     this.registerPluginIntoPlatform(plugin);
   }
 
   private registerPluginIntoPlatform(plugin: Plugin = mockPlugin) {
-    const getRoutePath = (pluginRoute: string) => `:modelName/:modelVersion/${pluginRoute}`;
+    const getRoutePath = (pluginRoute: string) =>
+      `:modelName/:modelVersion/${pluginRoute}`;
 
     const metadata = plugin.metadata;
 
@@ -42,7 +43,8 @@ export class PluginsService {
 
     const r: Route = {
       path: getRoutePath(plugin.metadata.routePath),
-      loadChildren: () => loadRemoteModule(metadata).then((_) => _[metadata.ngModuleName]),
+      loadChildren: () =>
+        loadRemoteModule(metadata).then(_ => _[metadata.ngModuleName]),
       data: {
         shellBackendUrl: 'http://localhost:5000/',
       },

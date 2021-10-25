@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {ModelsQuery} from "./state/models.query";
-import {Observable, of} from "rxjs";
-import {Model} from "../../domain";
-import { Dictionary } from 'lodash';
+import { ModelsQuery } from './state/models.query';
+import { Observable } from 'rxjs';
+import { Model } from '../../domain';
+import { RedirectService } from '../../redirect.service';
 
 @Component({
   selector: 'hs-models',
@@ -10,7 +10,12 @@ import { Dictionary } from 'lodash';
   styleUrls: ['./models.component.scss'],
 })
 export class ModelsComponent {
-  models$: Observable<Dictionary<[Model, ...Model[]]>> = this.query.selectGrouped()
+  models$: Observable<Model[]> = this.query.all$;
 
-  constructor(private query: ModelsQuery) {}
+  constructor(
+    private query: ModelsQuery,
+    private redirectService: RedirectService,
+  ) {
+    this.redirectService.redirectToFirst(this.models$, 'models');
+  }
 }

@@ -13,7 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { hsAbsoluteUrlFactory, HS_ABSOLUTE_URL } from './base_url.token';
 import { APP_BASE_HREF } from '@angular/common';
 import { baseHrefFactory } from './base-href-factory.util';
-import {ModelsModule} from "./features/models/models.module";
+import { ModelsModule } from './features/models/models.module';
 
 @NgModule({
   declarations: [AppComponent],
