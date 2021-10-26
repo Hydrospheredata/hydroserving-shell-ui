@@ -3,9 +3,7 @@
     <div class="mb-6 w-full">
       <div class="font-bold py-4 text-gray-800">Information</div>
       <ng-container *ngIf="model$ | async as model">
-        <hs-model-info
-          [model]="model"
-        ></hs-model-info>
+        <hs-model-info [model]="model"></hs-model-info>
       </ng-container>
     </div>
 
@@ -13,7 +11,7 @@
       <div class="font-bold py-4 text-gray-800">Available plugins</div>
       <div
         *ngFor="let p of plugins$ | async"
-        [routerLink]="[p.metadata.routePath]"
+        [routerLink]="[p.pluginInfo.routePath]"
         class="
           w-24
           h-24
@@ -21,8 +19,7 @@
           bg-white
           shadow-md
           rounded-md
-          flex
-          flex-col
+          flex flex-col
           justify-center
           items-center
           cursor-pointer
@@ -43,7 +40,7 @@
             d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
           />
         </svg>
-        <div class="pt-2 text-sm font-bold text-gray-900">{{p.name}}</div>
+        <div class="pt-2 text-sm font-bold text-gray-900">{{ p.name }}</div>
       </div>
     </aside>
   </div>

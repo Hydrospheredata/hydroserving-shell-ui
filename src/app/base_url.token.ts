@@ -11,11 +11,16 @@ export function hsBaseUrlFactory(baseHref: string = ''): string {
         environment.port ? ':' + environment.port : ''
       }${baseHref}`;
 }
+
 export function hsAbsoluteUrlFactory(baseHref: string = ''): string {
-  const { protocol, hostname } = window.location;
-  return environment.production
-    ? `${protocol}//${hostname}${baseHref}`
-    : `${environment.host}${
-        environment.port ? ':' + environment.port : ''
-      }${baseHref}`;
+  // const { protocol, hostname } = window.location;
+  // return environment.production
+  //   ? `${protocol}//${hostname}${baseHref}`
+  //   : `${environment.host}${
+  //       environment.port ? ':' + environment.port : ''
+  //     }${baseHref}`;
+
+  return `${environment.host}${
+    environment.port ? ':' + environment.port : ''
+  }${baseHref}`;
 }

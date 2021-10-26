@@ -1,43 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ModelsStore } from './models.store';
-import { of } from 'rxjs';
 import { Model } from '../../../domain';
+import { ShellHttpService } from 'src/app/shell-http.service';
+import { environment } from '@environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ModelsService {
-  constructor(private store: ModelsStore, private http: HttpClient) {}
+  constructor(private store: ModelsStore, private http: ShellHttpService) {}
+
+  apiUrl = environment.apiUrl;
 
   get() {
-    const mv: Model = {
-      name: 'adult',
-      version: 1,
-      signature: { inputs: [], outputs: [] },
-      metadata: new Map(),
-      trainingDataPrefix: 'some/path',
-      inferenceDataPrefix: 'some/path',
-    };
-
-    const mv2: Model = {
-      name: 'census',
-      version: 1,
-      signature: { inputs: [], outputs: [] },
-      metadata: new Map(),
-      trainingDataPrefix: 'some/path',
-      inferenceDataPrefix: 'some/path',
-    };
-
-    const mv3: Model = {
-      name: 'adult',
-      version: 2,
-      signature: { inputs: [], outputs: [] },
-      metadata: new Map(),
-      trainingDataPrefix: 'some/path',
-      inferenceDataPrefix: 'some/path',
-    };
-
-    return of([mv, mv2, mv3]).subscribe(mvs =>
-      this.store.update({ models: mvs }),
-    );
+    this.http
+      .get<Model[]>(`${this.apiUrl}/model`)
+      .subscribe(mvs => this.store.update({ models: mvs }));
   }
 }

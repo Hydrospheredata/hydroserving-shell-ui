@@ -1,17 +1,19 @@
 <div class="m-auto w-full h-full max-w-7xl py-12">
   <div>
-    <div class="text-gray-600 mb-6 font-bold">Activated plugins</div>
+    <div class="text-gray-600 mb-6 font-bold">Plugins</div>
     <div class="flex mb-12">
       <div
         class="bg-white rounded-md shadow-md py-4 px-8 max-w-xs"
-        *ngFor="let item of activePlugins$ | async"
+        *ngFor="let item of plugins$ | async"
       >
         <div class="font-bold text-lg text-gray-600 mb-2">{{ item.name }}</div>
-        <div class="font-light text-gray-400 text-sm">{{ item.description }}</div>
+        <div class="font-light text-gray-400 text-sm">
+          {{ item.description }}
+        </div>
       </div>
     </div>
   </div>
-  <div>
+  <!-- <div>
     <div class="text-gray-600 mb-6 font-bold">Plugins</div>
     <div class="flex">
       <div
@@ -23,5 +25,5 @@
         <button class="rounded border-0 text-blue-50 bg-blue-500 px-6 py-2 mt-4 capitalize font-bold text-xs" (click)="activate(item)">activate</button>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

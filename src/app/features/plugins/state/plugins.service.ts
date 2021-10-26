@@ -1,28 +1,27 @@
 import { loadRemoteModule } from '@angular-architects/module-federation';
-import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { mockPlugin, profilerPlugin } from '../mocks/plugin';
 import { PluginsStore } from './plugins.store';
 import { Route, Router } from '@angular/router';
 import { Plugin } from './plugin.model';
 import { HS_ABSOLUTE_URL } from 'src/app/base_url.token';
+import { ShellHttpService } from 'src/app/shell-http.service';
+import { environment } from '@environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PluginsService {
   constructor(
     private store: PluginsStore,
-    private http: HttpClient,
+    private http: ShellHttpService,
     private router: Router,
     @Inject(HS_ABSOLUTE_URL) private shellBackendUrl: string,
   ) {}
 
+  apiUrl = environment.apiUrl;
+
   get() {
-    // this.http
-    // .get<Plugin[]>('')
-    of([profilerPlugin]).subscribe(plugins => {
+    this.http.get<Plugin[]>(`${this.apiUrl}/plugin`).subscribe(plugins => {
       this.store.set(plugins);
-      plugins.forEach(p => p.state == 'active' && this.activate(p));
+      plugins.forEach(p => this.activate(p));
     });
   }
 
@@ -32,21 +31,18 @@ export class PluginsService {
     this.registerPluginIntoPlatform(plugin);
   }
 
-  private registerPluginIntoPlatform(plugin: Plugin = mockPlugin) {
+  private registerPluginIntoPlatform(plugin: Plugin) {
     const getRoutePath = (pluginRoute: string) =>
       `:modelName/:modelVersion/${pluginRoute}`;
 
-    const metadata = plugin.metadata;
+    const metadata = plugin.pluginInfo;
 
-    // We pass data attribute here to notify how mfe's should construct route based on url
-    // like `shellBakendUrl/plugin/profiler/aggregation/adult/1'
-
-    const r: Route = {
-      path: getRoutePath(plugin.metadata.routePath),
+    const route: Route = {
+      path: getRoutePath(metadata.routePath),
       loadChildren: () =>
         loadRemoteModule(metadata).then(_ => _[metadata.ngModuleName]),
       data: {
-        shellBackendUrl: 'http://localhost:5000/',
+        shellBackendUrl: this.shellBackendUrl + this.apiUrl + '/',
       },
     };
 
@@ -57,7 +53,7 @@ export class PluginsService {
       if (rootChildrens) {
         const modelsChildrens = rootChildrens[0].children;
         if (modelsChildrens) {
-          const newMV = [...modelsChildrens, r];
+          const newMV = [...modelsChildrens, route];
           rootChildrens[0].children = newMV;
 
           this.router.resetConfig(rootRoutes);

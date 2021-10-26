@@ -8,7 +8,7 @@ import { ModelsQuery } from '../../state/models.query';
 })
 export class ModelDetailsComponent {
   model$ = this.query.selectCurrentModel();
-  plugins$ = this.pluginsQuery.selectActivatePlugins();
+  plugins$ = this.pluginsQuery.all$;
 
   constructor(private query: ModelsQuery, private pluginsQuery: PluginsQuery) {}
 }
