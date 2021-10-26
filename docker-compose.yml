@@ -1,0 +1,10 @@
+version: "0.1"
+services:
+  shell:
+    image: "shell-ui:latest"
+    ports:
+      - "8080:8080"
+  profiler:
+    image: "profiler:0.0.1"
+    ports: 
+      - "5000:5000"
