@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
-import { Model } from "../../../../../../domain";
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Model } from '@domain/index';
 
 @Component({
-  selector: "hs-model-info",
-  templateUrl: "./model-info.component.html",
-  styleUrls: ["./model-info.component.scss"],
+  selector: 'hs-model-info',
+  templateUrl: './model-info.component.html',
+  styleUrls: ['./model-info.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelInfoComponent {
@@ -14,9 +14,9 @@ export class ModelInfoComponent {
 
   get fullName(): string {
     if (this.model) {
-      return this.model.name + ":" + this.model.version;
+      return this.model.name + ':' + this.model.version;
     } else {
-      return "";
+      return '';
     }
   }
 }

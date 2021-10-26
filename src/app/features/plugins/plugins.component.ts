@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PluginsQuery } from './state/plugins.query';
 import { PluginsService } from './state/plugins.service';
 import { Plugin } from './state/plugin.model';
@@ -8,13 +8,11 @@ import { Plugin } from './state/plugin.model';
   templateUrl: './plugins.component.html',
   styleUrls: ['./plugins.component.scss'],
 })
-export class PluginsComponent implements OnInit {
+export class PluginsComponent {
   constructor(private query: PluginsQuery, private service: PluginsService) {}
 
   activePlugins$ = this.query.selectActivatePlugins();
   nonActivePlugins$ = this.query.selectNonActivatePlugins();
-
-  ngOnInit() {}
 
   activate(plugin: Plugin) {
     this.service.activate(plugin);

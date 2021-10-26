@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import {Model} from "../../../../domain";
-import {Dictionary} from "lodash";
-import {ModelsQuery} from "../../state/models.query";
-import {Observable} from "rxjs";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Model } from '../../../../domain';
+import { Dictionary } from 'lodash';
+import { ModelsQuery } from '../../state/models.query';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'hs-models-sidebar',
@@ -10,9 +10,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./models-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModelsSidebarComponent implements OnInit {
-  models$: Observable<Dictionary<[Model, ...Model[]]>> = this.query.selectGrouped()
+export class ModelsSidebarComponent {
+  models$: Observable<Dictionary<Model[]>> = this.query.selectGrouped();
   constructor(private query: ModelsQuery) {}
-
-  ngOnInit(): void {}
 }
