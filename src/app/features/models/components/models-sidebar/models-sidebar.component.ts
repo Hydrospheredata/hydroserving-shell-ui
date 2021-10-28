@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Model } from '../../../../domain';
+import { Model } from '@domain/index';
 import { Dictionary } from 'lodash';
 import { ModelsQuery } from '../../state/models.query';
 import { Observable } from 'rxjs';

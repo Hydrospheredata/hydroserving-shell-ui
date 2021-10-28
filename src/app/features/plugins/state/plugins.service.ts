@@ -6,12 +6,16 @@ import { Plugin } from './plugin.model';
 import { HS_ABSOLUTE_URL } from 'src/app/base_url.token';
 import { ShellHttpService } from 'src/app/shell-http.service';
 import { environment } from '@environments/environment';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({ providedIn: 'root' })
 export class PluginsService {
   constructor(
     private store: PluginsStore,
     private http: ShellHttpService,
+    private matSnackBar: MatSnackBar,
     private router: Router,
     @Inject(HS_ABSOLUTE_URL) private shellBackendUrl: string,
   ) {}
@@ -19,10 +23,21 @@ export class PluginsService {
   apiUrl = environment.apiUrl;
 
   get() {
-    this.http.get<Plugin[]>(`${this.apiUrl}/plugin`).subscribe(plugins => {
-      this.store.set(plugins);
-      plugins.forEach(p => this.activate(p));
-    });
+    this.http
+      .get<Plugin[]>(`${this.apiUrl}/plugin`)
+      .pipe(
+        catchError(err => {
+          this.matSnackBar.open(err.message, undefined, {
+            duration: 2000,
+            panelClass: 'snackbar',
+          });
+          return of([]);
+        }),
+      )
+      .subscribe(plugins => {
+        this.store.set(plugins);
+        plugins.forEach(p => this.activate(p));
+      });
   }
 
   activate(plugin: Plugin) {
