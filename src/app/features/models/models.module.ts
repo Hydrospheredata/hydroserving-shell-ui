@@ -8,6 +8,7 @@ import { ModelsComponent } from './models.component';
 import { ModelStatusComponent } from './components/model-status/model-status.component';
 import { ModelDetailsComponent } from './components/model-details/model-details.component';
 import { ModelInfoComponent } from './components/model-details/components/model-info/model-info.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ModelInfoComponent } from './components/model-details/components/model-
     ModelDetailsComponent,
     ModelInfoComponent,
   ],
-  imports: [CommonModule, ModelsRoutingModule],
+  imports: [CommonModule, ModelsRoutingModule, MatSnackBarModule],
   exports: [ModelsComponent],
 })
 export class ModelsModule {}

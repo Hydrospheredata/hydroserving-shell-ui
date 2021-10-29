@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
-import { Model } from '../../../domain';
+import { Model } from '@domain/index';
 
 export interface ModelsState {
   models: Model[];

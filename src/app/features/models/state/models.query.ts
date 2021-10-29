@@ -5,7 +5,7 @@ import { ModelsState, ModelsStore } from './models.store';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { groupBy, get } from 'lodash/fp';
-import { Model } from '../../../domain';
+import { Model } from '@domain/index';
 import { Dictionary } from 'lodash';
 
 @Injectable({ providedIn: 'root' })

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModelsQuery } from './state/models.query';
 import { Observable } from 'rxjs';
-import { Model } from '../../domain';
+import { Model } from '@domain/index';
 import { RedirectService } from '../../redirect.service';
 
 @Component({

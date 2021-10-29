@@ -1,4 +1,4 @@
-<div class="m-auto w-full h-full max-w-7xl py-12">
+<div *ngIf="(plugins$ | async)!.length > 0; else noPlugins" class="m-auto w-full h-full max-w-7xl py-12">
   <div>
     <div class="text-gray-600 mb-6 font-bold">Plugins</div>
     <div class="flex mb-12">
@@ -27,3 +27,16 @@
     </div>
   </div> -->
 </div>
+
+<ng-template #noPlugins>
+  <div class="flex justify-center mt-28">
+    <div class="flex flex-col items-center rounded-md shadow-lg p-8 bg-white">
+      <div class="h-12 w-12 bg-blue-50 rounded-full p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+        </svg>
+      </div>
+      <div class="text-gray-500 mt-5">No available plugins</div>
+    </div>
+  </div>
+</ng-template>
