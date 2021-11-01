@@ -5,6 +5,7 @@ import { ModelsTableComponent } from './features/models/components/models-table/
 import { ModelsComponent } from './features/models/models.component';
 import { PluginsComponent } from './features/plugins/plugins.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { CanActivateModelGuard } from './can-activate-model.guard';
 
 const routes: Routes = [
   {
@@ -17,7 +18,13 @@ const routes: Routes = [
           {
             path: '',
             component: ModelsComponent,
-            children: [{ path: ':modelName', component: ModelsTableComponent }],
+            children: [
+              {
+                path: ':modelName',
+                component: ModelsTableComponent,
+                canActivate: [CanActivateModelGuard],
+              },
+            ],
           },
           {
             path: ':modelName/:modelVersion',
@@ -30,6 +37,11 @@ const routes: Routes = [
         component: PluginsComponent,
         // loadChildren: () =>
         //   import('./features/plugins/plugins.module').then((m) => m.PluginsModule),
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'models',
       },
     ],
   },
