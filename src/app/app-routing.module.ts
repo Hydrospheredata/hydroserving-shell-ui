@@ -6,6 +6,7 @@ import { ModelsComponent } from './features/models/models.component';
 import { PluginsComponent } from './features/plugins/plugins.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { CanActivateModelGuard } from './can-activate-model.guard';
+import { CanActivateModelVersionGuard } from './can-activate-model-version.guard';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
           {
             path: ':modelName/:modelVersion',
             component: ModelDetailsComponent,
+            canActivate: [CanActivateModelVersionGuard],
           },
         ],
       },
