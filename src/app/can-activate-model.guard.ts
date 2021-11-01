@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { exhaustMap, filter, switchMap } from 'rxjs/operators';
 import { ModelsQuery } from './features/models/state/models.query';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Model } from '@domain/index';
@@ -17,7 +17,9 @@ export class CanActivateModelGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     const modelName = route.params.modelName;
 
-    return this.query.selectModelsLoaded().pipe(
+    return this.query.loaded$.pipe(
+      filter(loaded => loaded === true),
+      exhaustMap(_ => this.query.all$),
       switchMap(models => {
         const model: Model | undefined = models.find(
           curModel => curModel.name === modelName,

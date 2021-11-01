@@ -11,7 +11,8 @@ import { Dictionary } from 'lodash';
 @Injectable({ providedIn: 'root' })
 export class ModelsQuery extends Query<ModelsState> {
   all$ = this.select(s => s.models);
-  loaded$ = this.select(s => s.loading);
+  loaded$ = this.select(s => s.loaded);
+
   constructor(protected store: ModelsStore, private routerQuery: RouterQuery) {
     super(store);
   }
@@ -46,14 +47,6 @@ export class ModelsQuery extends Query<ModelsState> {
     ]).pipe(
       map(([mvs, version]) => {
         return mvs.find(model => model.version == version);
-      }),
-    );
-  }
-
-  selectModelsLoaded() {
-    return combineLatest([this.loaded$, this.all$]).pipe(
-      map(([_, models]) => {
-        return _ ? [] : models;
       }),
     );
   }
