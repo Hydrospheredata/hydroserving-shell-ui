@@ -7,7 +7,7 @@
       </ng-container>
     </div>
 
-    <aside class="plugins">
+    <div class="plugins mb-6">
       <div class="font-bold py-4 text-gray-800">Available plugins</div>
       <div
         *ngFor="let p of plugins$ | async"
@@ -42,6 +42,10 @@
         </svg>
         <div class="pt-2 text-sm font-bold text-gray-900">{{ p.name }}</div>
       </div>
-    </aside>
+    </div>
+
+    <div>
+      <hs-reports></hs-reports>
+    </div>
   </div>
 </div>

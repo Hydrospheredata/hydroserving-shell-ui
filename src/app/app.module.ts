@@ -16,6 +16,7 @@ import { baseHrefFactory } from './base-href-factory.util';
 import { ModelsModule } from './features/models/models.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReportModule } from './features/report/report.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BrowserAnimationsModule,
     PluginsModule,
     ModelsModule,
+    ReportModule,
     LayoutModule,
     ApplicationsModule,
     HttpClientModule,

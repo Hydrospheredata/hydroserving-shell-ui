@@ -16,3 +16,7 @@
 .mv-table td {
   @apply text-left py-3 px-6 text-sm;
 }
+
+.mv-table tr {
+  @apply hover:bg-blue-50 cursor-pointer;
+}

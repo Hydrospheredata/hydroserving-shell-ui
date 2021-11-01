@@ -44,6 +44,8 @@ export class ModelsQuery extends Query<ModelsState> {
       this.routerQuery.selectParams('modelVersion'),
     ]).pipe(
       map(([mvs, version]) => {
+        if (mvs === undefined) return undefined;
+
         return mvs.find(model => model.version == version);
       }),
     );

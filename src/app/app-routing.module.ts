@@ -4,6 +4,7 @@ import { ModelDetailsComponent } from './features/models/components/model-detail
 import { ModelsTableComponent } from './features/models/components/models-table/models-table.component';
 import { ModelsComponent } from './features/models/models.component';
 import { PluginsComponent } from './features/plugins/plugins.component';
+import { ReportComponent } from './features/report/report/report.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
           {
             path: ':modelName/:modelVersion',
             component: ModelDetailsComponent,
+          },
+          {
+            path: ':modelName/:modelVersion/report/:reportName',
+            component: ReportComponent,
           },
         ],
       },

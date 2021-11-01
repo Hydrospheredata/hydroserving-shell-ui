@@ -1,0 +1,17 @@
+<div>
+  <div class="font-bold py-2 text-gray-900">Reports</div>
+  <mat-table [dataSource]="reports">
+    <ng-container matColumnDef="batch">
+      <mat-header-cell *matHeaderCellDef> batch </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.batch }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      [routerLink]="['report', row.batch]"
+      *matRowDef="let row; columns: displayedColumns"
+    ></mat-row>
+  </mat-table>
+</div>
