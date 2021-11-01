@@ -4,11 +4,13 @@ import { Model } from '@domain/index';
 
 export interface ModelsState {
   models: Model[];
+  loading: boolean;
 }
 
 export function createInitialState(): ModelsState {
   return {
     models: [],
+    loading: false,
   };
 }
 

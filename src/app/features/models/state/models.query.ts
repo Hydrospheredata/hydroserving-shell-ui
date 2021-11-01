@@ -3,7 +3,7 @@ import { combineQueries, Query } from '@datorama/akita';
 import { RouterQuery } from '@datorama/akita-ng-router-store';
 import { ModelsState, ModelsStore } from './models.store';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { groupBy, get } from 'lodash/fp';
 import { Model } from '@domain/index';
 import { Dictionary } from 'lodash';
@@ -11,6 +11,7 @@ import { Dictionary } from 'lodash';
 @Injectable({ providedIn: 'root' })
 export class ModelsQuery extends Query<ModelsState> {
   all$ = this.select(s => s.models);
+  loaded$ = this.select(s => s.loading);
   constructor(protected store: ModelsStore, private routerQuery: RouterQuery) {
     super(store);
   }
@@ -45,6 +46,14 @@ export class ModelsQuery extends Query<ModelsState> {
     ]).pipe(
       map(([mvs, version]) => {
         return mvs.find(model => model.version == version);
+      }),
+    );
+  }
+
+  selectModelsLoaded() {
+    return combineLatest([this.loaded$, this.all$]).pipe(
+      map(([_, models]) => {
+        return _ ? [] : models;
       }),
     );
   }

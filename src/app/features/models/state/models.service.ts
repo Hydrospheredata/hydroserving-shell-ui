@@ -18,6 +18,7 @@ export class ModelsService {
   apiUrl = environment.apiUrl;
 
   get() {
+    this.store.update({ loading: true });
     this.http
       .get<Model[]>(`${this.apiUrl}/model`)
       .pipe(
@@ -29,6 +30,6 @@ export class ModelsService {
           return of([]);
         }),
       )
-      .subscribe(mvs => this.store.update({ models: mvs }));
+      .subscribe(mvs => this.store.update({ models: mvs, loading: false }));
   }
 }

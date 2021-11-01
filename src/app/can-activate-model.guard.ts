@@ -17,9 +17,8 @@ export class CanActivateModelGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     const modelName = route.params.modelName;
 
-    return this.query.all$.pipe(
+    return this.query.selectModelsLoaded().pipe(
       switchMap(models => {
-        console.log('models', models);
         const model: Model | undefined = models.find(
           curModel => curModel.name === modelName,
         );
