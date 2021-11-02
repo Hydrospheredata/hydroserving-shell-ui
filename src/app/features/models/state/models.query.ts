@@ -3,7 +3,7 @@ import { combineQueries, Query } from '@datorama/akita';
 import { RouterQuery } from '@datorama/akita-ng-router-store';
 import { ModelsState, ModelsStore } from './models.store';
 import { map } from 'rxjs/operators';
-import { combineLatest, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { groupBy, get } from 'lodash/fp';
 import { Model } from '@domain/index';
 import { Dictionary } from 'lodash';
