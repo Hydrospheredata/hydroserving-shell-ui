@@ -3,15 +3,15 @@ import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { exhaustMap, filter, switchMap } from 'rxjs/operators';
 import { ModelsQuery } from './features/models/state/models.query';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Model } from '@domain/index';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateModelGuard implements CanActivate {
   constructor(
     private router: Router,
     private query: ModelsQuery,
-    private matSnackBar: MatSnackBar,
+    private snackbar: SnackbarService,
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
@@ -28,13 +28,8 @@ export class CanActivateModelGuard implements CanActivate {
         if (model) {
           return of(true);
         } else {
-          this.matSnackBar.open(
+          this.snackbar.showMessage(
             `Models with name ${modelName} doesn't exist`,
-            undefined,
-            {
-              duration: 2500,
-              panelClass: 'snackbar',
-            },
           );
           this.redirectToDefault();
           return of(false);

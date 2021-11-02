@@ -4,14 +4,14 @@ import { Observable, of } from 'rxjs';
 import { switchMap, filter } from 'rxjs/operators';
 
 import { ModelsQuery } from './features/models/state/models.query';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '@app/snackbar.service';
 
 @Injectable({ providedIn: 'root' })
 export class CanActivateModelVersionGuard implements CanActivate {
   constructor(
     private router: Router,
     private query: ModelsQuery,
-    private matSnackBar: MatSnackBar,
+    private snackbar: SnackbarService,
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
@@ -31,13 +31,8 @@ export class CanActivateModelVersionGuard implements CanActivate {
         if (modelVersionExists) {
           return of(true);
         } else {
-          this.matSnackBar.open(
+          this.snackbar.showMessage(
             `Models version: ${modelVersionNumber} doesn't exist for model with name: ${modelName}`,
-            undefined,
-            {
-              duration: 2500,
-              panelClass: 'snackbar',
-            },
           );
           this.router.navigate(['models', modelName]);
           return of(false);

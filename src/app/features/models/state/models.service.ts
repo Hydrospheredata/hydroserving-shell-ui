@@ -4,15 +4,15 @@ import { Model } from '@domain/index';
 import { ShellHttpService } from 'src/app/shell-http.service';
 import { environment } from '@environments/environment';
 import { catchError } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { of } from 'rxjs';
+import { SnackbarService } from '@app/snackbar.service';
 
 @Injectable({ providedIn: 'root' })
 export class ModelsService {
   constructor(
     private store: ModelsStore,
     private http: ShellHttpService,
-    private matSnackBar: MatSnackBar,
+    private snackbar: SnackbarService,
   ) {}
 
   apiUrl = environment.apiUrl;
@@ -22,10 +22,7 @@ export class ModelsService {
       .get<Model[]>(`${this.apiUrl}/model`)
       .pipe(
         catchError(err => {
-          this.matSnackBar.open(err.message, undefined, {
-            duration: 2000,
-            panelClass: 'snackbar',
-          });
+          this.snackbar.showMessage(err.message);
           return of([]);
         }),
       )
