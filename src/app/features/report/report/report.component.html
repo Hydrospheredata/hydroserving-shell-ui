@@ -1,5 +1,5 @@
 <div class="max-w-5xl mx-auto my-12">
-  <div class="font-bold text-gray-900 text-lg">Aggregated report</div>
+  <div class="font-bold text-gray-700 text-lg">Aggregated report</div>
   <div class="mb-10">
     <div class="flex text-sm font-light text-gray-700">
       <div class="pr-1">Generated for:</div>
@@ -7,96 +7,86 @@
     </div>
   </div>
 
-  <div class="flex">
-    <div class="flex flex-1 flex-col h-36">
-      <div class="font-bold mb-2 text-sm text-gray-800">Checks</div>
-      <div
-        class="
-          flex flex-1 flex-col
-          bg-green-50
-          rounded-md
-          shadow-sm
-          p-4
-          mr-6
-          border-2 border-green-300
-        "
-      >
-        <div class="text-center font-bold text-green-900 mb-auto">
-          Checks passed
+  <div class="flex mb-6">
+    <ng-container *ngIf="report.summary.checks as checksSummary">
+      <div class="summary" [ngClass]="'summary--' + checksSummary.grade">
+        <div class="summary__title">Checks</div>
+        <div class="summary__cell">
+          <ng-container [ngSwitch]="checksSummary.percentOfFailedRecords">
+            <div class="summary__status" *ngSwitchCase="0">Checks passed</div>
+            <ng-container *ngSwitchDefault>
+              <div class="summary__status">
+                {{ checksSummary.percentOfFailedRecords }}%
+              </div>
+              <div class="summary__description">failed records</div>
+              <div class="summary__opener" (click)="revealDetails('checks')">
+                click to reveal
+              </div>
+            </ng-container>
+          </ng-container>
         </div>
-        <!-- <div class="text-right text-sm mb-4 text-green-900">
-          All checks passed
-        </div> -->
-        <!-- <div class="text-center text-xs font-thin text-gray-500">
-          click to reveal
-        </div> -->
       </div>
-    </div>
+    </ng-container>
 
-    <div class="flex flex-1 flex-col">
-      <div class="font-bold mb-2 text-sm text-gray-800">Suspicious records</div>
-      <div
-        class="
-          flex flex-1 flex-col
-          bg-yellow-50
-          rounded-md
-          shadow-sm
-          p-4
-          mr-6
-          border-2 border-yellow-300
-        "
-      >
-        <div class="mb-auto">
-          <div class="text-center font-bold text-xl text-yellow-900">10%</div>
-          <div class="text-center text-sm text-yellow-900 opacity-75">
-            suspicious records
+    <ng-container *ngIf="report.summary.suspicious as suspiciousSummary">
+      <div class="summary" [ngClass]="'summary--' + suspiciousSummary.grade">
+        <div class="summary__title">Suspicious records</div>
+        <div class="summary__cell">
+          <div class="summary__status">
+            {{ suspiciousSummary.percentOfSuspiciousChecks }}%
+          </div>
+          <div class="summary__description">suspicious records</div>
+
+          <div class="summary__opener" (click)="revealDetails('suspicious')">
+            click to reveal
           </div>
         </div>
+      </div>
+    </ng-container>
 
-        <div class="text-center text-xs font-thin text-gray-500">
-          click to reveal
+    <ng-container *ngIf="report.summary.drift as driftSummary">
+      <div class="summary" [ngClass]="'summary--' + driftSummary.grade">
+        <div class="summary__title">Data drift</div>
+        <div class="summary__cell">
+          <ng-container [ngSwitch]="driftSummary.drifted">
+            <div class="summary__status" *ngSwitchCase="false">
+              Drift not found
+            </div>
+            <ng-container *ngSwitchDefault>
+              <div class="summary__status">Drifted</div>
+              <div class="summary__opener" (click)="revealDetails('drift')">
+                click to reveal
+              </div>
+            </ng-container>
+          </ng-container>
         </div>
       </div>
-    </div>
+    </ng-container>
 
-    <div class="flex flex-1 flex-col">
-      <div class="font-bold mb-2 text-sm text-gray-800">Data drift</div>
-      <div
-        class="
-          flex flex-1 flex-col
-          bg-red-50
-          rounded-md
-          shadow-sm
-          p-4
-          mr-6
-          border-2 border-red-500
-        "
-      >
-        <div class="text-center font-bold mb-auto text-red-900">Detected</div>
-        <div class="text-center text-xs font-thin text-gray-500">
-          click to reveal
+    <ng-container *ngIf="report.summary.overallDrift as driftSummary">
+      <div class="summary" [ngClass]="'summary--' + driftSummary.grade">
+        <div class="summary__title">Data drift</div>
+        <div class="summary__cell">
+          <ng-container [ngSwitch]="driftSummary.drifted">
+            <div class="summary__status" *ngSwitchCase="false">
+              Drift not found
+            </div>
+            <ng-container *ngSwitchDefault>
+              <div class="summary__status">Drifted</div>
+              <div
+                class="summary__opener"
+                (click)="revealDetails('overallDrift')"
+              >
+                click to reveal
+              </div>
+            </ng-container>
+          </ng-container>
         </div>
       </div>
-    </div>
+    </ng-container>
+  </div>
 
-    <div class="flex flex-1 flex-col">
-      <div class="font-bold mb-2 text-sm text-gray-800">Overall data drift</div>
-      <div
-        class="
-          flex flex-1 flex-col
-          bg-red-50
-          rounded-md
-          shadow-sm
-          p-4
-          mr-6
-          border-2 border-red-500
-        "
-      >
-        <div class="text-center font-bold mb-auto text-red-900">Detected</div>
-        <div class="text-center text-xs font-thin text-gray-500">
-          click to reveal
-        </div>
-      </div>
-    </div>
+  <div *ngIf="selectedDetails">
+    <div class="font-bold text-gray-900">Details</div>
   </div>
 </div>
