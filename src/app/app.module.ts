@@ -16,6 +16,12 @@ import { baseHrefFactory } from './base-href-factory.util';
 import { ModelsModule } from './features/models/models.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {
+  hsIconsDc,
+  hsIconsIconLeft,
+  hsIconsIconModels,
+  IconsRegistryService,
+} from '@hydrosphere/hs-ui-kit';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,4 +53,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private iconRegistry: IconsRegistryService) {
+    this.iconRegistry.registerIcons([
+      hsIconsIconLeft,
+      hsIconsIconModels,
+      hsIconsDc,
+    ]);
+  }
+}

@@ -9,6 +9,7 @@ import { ModelStatusComponent } from './components/model-status/model-status.com
 import { ModelDetailsComponent } from './components/model-details/model-details.component';
 import { ModelInfoComponent } from './components/model-details/components/model-info/model-info.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HsUiKitModule } from '@hydrosphere/hs-ui-kit';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ModelDetailsComponent,
     ModelInfoComponent,
   ],
-  imports: [CommonModule, ModelsRoutingModule, MatSnackBarModule],
+  imports: [
+    CommonModule,
+    ModelsRoutingModule,
+    MatSnackBarModule,
+    HsUiKitModule,
+  ],
   exports: [ModelsComponent],
 })
 export class ModelsModule {}
