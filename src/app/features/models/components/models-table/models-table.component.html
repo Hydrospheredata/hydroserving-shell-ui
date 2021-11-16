@@ -10,7 +10,11 @@
       <th>Inference data prefix</th>
     </thead>
     <tbody>
-      <tr *ngFor="let model of models$ | async" [routerLink]="[model.version]">
+      <tr
+        *ngFor="let model of models$ | async"
+        class="cursor-pointer duration-150"
+        [routerLink]="[model.version]"
+      >
         <td class="font-bold text-gray-900">{{ model.version }}</td>
         <td class="text-gray-900">{{ model.trainingDataPrefix }}</td>
         <td class="text-gray-900">{{ model.inferenceDataPrefix }}</td>
