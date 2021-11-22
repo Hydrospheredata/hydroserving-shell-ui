@@ -7,7 +7,6 @@ on:
 
 jobs:
   Build_Push:
-    needs: Test
     runs-on: ubuntu-20.04
     env:
       IMAGE: shell-ui # name of the built image
