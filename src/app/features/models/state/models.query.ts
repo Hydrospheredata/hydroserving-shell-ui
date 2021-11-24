@@ -11,6 +11,8 @@ import { Dictionary } from 'lodash';
 @Injectable({ providedIn: 'root' })
 export class ModelsQuery extends Query<ModelsState> {
   all$ = this.select(s => s.models);
+  loaded$ = this.select(s => s.loaded);
+
   constructor(protected store: ModelsStore, private routerQuery: RouterQuery) {
     super(store);
   }

@@ -6,6 +6,8 @@ import { ModelsComponent } from './features/models/models.component';
 import { PluginsComponent } from './features/plugins/plugins.component';
 import { ReportComponent } from './features/report/report/report.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { CanActivateModelGuard } from './can-activate-model.guard';
+import { CanActivateModelVersionGuard } from './can-activate-model-version.guard';
 
 const routes: Routes = [
   {
@@ -18,11 +20,18 @@ const routes: Routes = [
           {
             path: '',
             component: ModelsComponent,
-            children: [{ path: ':modelName', component: ModelsTableComponent }],
+            children: [
+              {
+                path: ':modelName',
+                component: ModelsTableComponent,
+                canActivate: [CanActivateModelGuard],
+              },
+            ],
           },
           {
             path: ':modelName/:modelVersion',
             component: ModelDetailsComponent,
+            canActivate: [CanActivateModelVersionGuard],
           },
           {
             path: ':modelName/:modelVersion/report/:reportName',
@@ -35,6 +44,11 @@ const routes: Routes = [
         component: PluginsComponent,
         // loadChildren: () =>
         //   import('./features/plugins/plugins.module').then((m) => m.PluginsModule),
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'models',
       },
     ],
   },
