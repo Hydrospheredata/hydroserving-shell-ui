@@ -13,26 +13,26 @@
       </ng-container>
     </div>
 
-    <aside class="plugins">
+    <aside class="plugins mb-6">
       <div class="font-bold py-4 text-gray-800">Available plugins</div>
       <div class="flex">
         <div
           *ngFor="let p of plugins$ | async"
           [routerLink]="[p.pluginInfo.routePath]"
           class="
-          w-24
-          h-24
-          p-4
-          bg-white
-          shadow-md
-          rounded-md
-          flex flex-col
-          justify-center
-          items-center
-          cursor-pointer
-          hover:bg-blue-50
-          mr-3
-        "
+            w-24
+            h-24
+            p-4
+            bg-white
+            shadow-md
+            rounded-md
+            flex flex-col
+            justify-center
+            items-center
+            cursor-pointer
+            hover:bg-blue-50
+            mr-3
+          "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,4 +53,8 @@
       </div>
     </aside>
   </div>
+  <ng-container *ngIf="model$ | async as model">
+    <div class="font-bold py-4 text-gray-800">Signature</div>
+    <hs-signature [signature]="model.signature"></hs-signature>
+  </ng-container>
 </div>
