@@ -10,6 +10,7 @@ import { ModelDetailsComponent } from './components/model-details/model-details.
 import { ModelInfoComponent } from './components/model-details/components/model-info/model-info.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HsUiKitModule } from '@hydrosphere/hs-ui-kit';
+import { SignatureComponent } from './components/model-details/components/signature/signature.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HsUiKitModule } from '@hydrosphere/hs-ui-kit';
     ModelStatusComponent,
     ModelDetailsComponent,
     ModelInfoComponent,
+    SignatureComponent,
   ],
   imports: [
     CommonModule,
