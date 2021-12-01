@@ -11,6 +11,7 @@ import { ModelInfoComponent } from './components/model-details/components/model-
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReportModule } from '../report/report.module';
 import { HsUiKitModule } from '@hydrosphere/hs-ui-kit';
+import { SignatureComponent } from './components/model-details/components/signature/signature.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HsUiKitModule } from '@hydrosphere/hs-ui-kit';
     ModelStatusComponent,
     ModelDetailsComponent,
     ModelInfoComponent,
+    SignatureComponent,
   ],
   imports: [CommonModule, ModelsRoutingModule, MatSnackBarModule, ReportModule, HsUiKitModule],
   exports: [ModelsComponent],

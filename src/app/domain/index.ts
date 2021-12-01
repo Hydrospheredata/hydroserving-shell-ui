@@ -1,14 +1,4 @@
-export interface Field {
-  name: string;
-  shape: number[];
-  dtype: string;
-  profile: string;
-}
-
-export interface Signature {
-  inputs: Field[];
-  outputs: Field[];
-}
+import Signature from './signature';
 
 export interface Model {
   name: string;
