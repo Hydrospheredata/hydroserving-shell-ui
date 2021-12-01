@@ -5,11 +5,11 @@
   }
 
   &__cell {
-    @apply flex flex-1 bg-blue-50 flex-col rounded-md shadow-sm p-4 mr-6 border-2 border-blue-300;
+    @apply flex flex-1 justify-center items-center bg-blue-50 flex-col rounded-md shadow-sm p-4 mr-6 border-2 border-blue-300;
   }
 
   &__status {
-    @apply text-center font-bold text-blue-900;
+    @apply text-center text-xl font-bold text-blue-900;
   }
 
   &__description {
@@ -17,7 +17,7 @@
   }
 
   &__opener {
-    @apply text-center text-xs font-thin text-gray-500 mt-auto cursor-pointer hover:text-gray-900;
+    @apply text-center text-xs font-thin text-gray-500 cursor-pointer mt-3 hover:text-gray-900;
   }
 }
 
@@ -83,4 +83,8 @@
   & .summary__description {
     @apply text-red-900;
   }
+}
+
+.overall-drift {
+  @apply rounded-full flex justify-between items-center ml-3 px-2 py-1;
 }

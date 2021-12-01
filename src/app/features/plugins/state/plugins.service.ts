@@ -59,7 +59,6 @@ export class PluginsService {
     };
 
     const rootRoutes = this.router.config;
-    console.log(rootRoutes);
     if (rootRoutes[0]) {
       const rootChildrens = rootRoutes[0].children;
 
@@ -70,7 +69,6 @@ export class PluginsService {
           rootChildrens[0].children = newMV;
 
           this.router.resetConfig(rootRoutes);
-          console.log(this.router.config);
         }
       }
     }

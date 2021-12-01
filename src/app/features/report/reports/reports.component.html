@@ -1,16 +1,68 @@
 <div>
   <div class="font-bold py-2 text-gray-900">Reports</div>
-  <mat-table [dataSource]="reports">
+  <mat-table
+    class="rounded-md shadow-lg bg-white"
+    [dataSource]="reports$ | async"
+  >
     <ng-container matColumnDef="batch">
       <mat-header-cell *matHeaderCellDef> batch </mat-header-cell>
+      <mat-cell class="cursor-pointer" *matCellDef="let element">
+        {{ element.file }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="checks">
+      <mat-header-cell *matHeaderCellDef> checks </mat-header-cell>
+      <mat-cell class="font-bold" *matCellDef="let element">
+        <ng-container *ngIf="element.batchStats.failRatio as failChecks; else checksPassed">
+          <div class="text-red-600">
+            {{failChecks * 100}}% failed
+          </div>
+        </ng-container>
+        <ng-template #checksPassed>
+          <div class="text-green-600">
+            100% passed
+          </div>
+        </ng-template>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="suspicious">
+      <mat-header-cell *matHeaderCellDef> suspicious </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{ element.batch }}
+        <div class="w-6 h-6" [ngSwitch]="element.batchStats.susVerdict">
+          <div *ngSwitchCase="'excellent'">
+            <hs-icon class="text-green-600" name="check" [matTooltip]="element.batchStats.susVerdict!" matTooltipPosition="right"></hs-icon>
+          </div>
+          <div *ngSwitchCase="'good'">
+            <hs-icon class="text-green-500" name="check" [matTooltip]="element.batchStats.susVerdict!" matTooltipPosition="right"></hs-icon>
+          </div>
+          <div *ngSwitchCase="'fair'">
+            <hs-icon class="text-yellow-600" name="error" [matTooltip]="element.batchStats.susVerdict!" matTooltipPosition="right"></hs-icon>
+          </div>
+          <div *ngSwitchCase="'bad'">
+            <hs-icon class="text-red-600" name="error" [matTooltip]="element.batchStats.susVerdict!" matTooltipPosition="right"></hs-icon>
+          </div>
+          <div *ngSwitchDefault>
+            <hs-icon class="text-gray-500" name="help" matTooltip="unknown" matTooltipPosition="right"></hs-icon>
+          </div>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="drift">
+      <mat-header-cell *matHeaderCellDef> drift </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.features.length > 0; else notDetected">
+          <hs-icon class="w-6 h-6 text-red-600" name="error" matTooltip="detected" matTooltipPosition="right"></hs-icon>
+        </ng-container>
+        <ng-template #notDetected>
+          <hs-icon class="w-6 h-6 text-green-600" name="check" matTooltip="not detected" matTooltipPosition="right"></hs-icon>
+        </ng-template>
       </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row
-      [routerLink]="['report', row.batch]"
+      [routerLink]="['report', row.file]"
+      class="cursor-pointer"
       *matRowDef="let row; columns: displayedColumns"
     ></mat-row>
   </mat-table>

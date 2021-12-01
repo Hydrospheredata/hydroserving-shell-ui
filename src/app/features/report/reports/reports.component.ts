@@ -1,25 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-
-interface Report {
-  batch: string;
-}
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ReportsFacade } from '@app/features/report/state/reports.facade';
+import { ReportsQuery } from '@app/features/report/state/reports.query';
+import { ReportsService } from '@app/features/report/state/reports.service';
 
 @Component({
   selector: 'hs-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss'],
+  providers: [ReportsFacade, ReportsQuery, ReportsService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReportsComponent implements OnInit {
-  constructor(private router: Router) {}
-  displayedColumns: string[] = ['batch'];
+export class ReportsComponent {
+  reports$ = this.query.selectReports();
+  displayedColumns: string[] = ['batch', 'checks', 'suspicious', 'drift'];
 
-  reports: Report[] = [{ batch: 'batch_1.csv' }];
-
-  ngOnInit(): void {}
-
-  openReport(a: any) {
-    this.router.navigate(['./profiler']);
+  constructor(private facade: ReportsFacade, private query: ReportsQuery) {
+    this.facade.loadAllReports();
   }
 }

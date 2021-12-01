@@ -6,8 +6,8 @@ import { environment } from '@environments/environment';
 export class ShellHttpService {
   constructor(private http: HttpClient) {}
 
-  get<T>(url: string) {
-    return this.http.get<T>(this.fullUrl(url));
+  get<T>(url: string, params?: any) {
+    return this.http.get<T>(this.fullUrl(url), { params });
   }
 
   post<T>(url: string, body: any) {

@@ -1,92 +1,131 @@
-<div class="max-w-5xl mx-auto my-12">
-  <div class="font-bold text-gray-700 text-lg">Aggregated report</div>
+<div *ngIf="report$ | async as report" class="max-w-5xl mx-auto my-12">
+  <div class="font-bold text-gray-700 text-lg">Overall report</div>
   <div class="mb-10">
     <div class="flex text-sm font-light text-gray-700">
       <div class="pr-1">Generated for:</div>
-      <div>batch_1.csv</div>
+      <div>{{report.file}}</div>
     </div>
   </div>
 
   <div class="flex mb-6">
-    <ng-container *ngIf="report.summary.checks as checksSummary">
-      <div class="summary" [ngClass]="'summary--' + checksSummary.grade">
-        <div class="summary__title">Checks</div>
-        <div class="summary__cell">
-          <ng-container [ngSwitch]="checksSummary.percentOfFailedRecords">
-            <div class="summary__status" *ngSwitchCase="0">Checks passed</div>
-            <ng-container *ngSwitchDefault>
+    <div class="rounded-md shadow-lg p-8 bg-white w-full">
+      <div class="flex items-center">
+        <ng-container>
+          <div class="font-bold">Overall data drift</div>
+            <ng-container *ngIf="report.overallDrift; else notDetected">
+              <div class="overall-drift bg-red-500">
+                <hs-icon class="w-4 h-4 text-white mr-1" name="icon_error_outline"></hs-icon>
+                <div class="font-bold text-xs text-white">detected</div>
+              </div>
+            </ng-container>
+            <ng-template #notDetected>
+              <div class="overall-drift bg-green-600">
+                <hs-icon class="w-4 h-4 text-white mr-1" name="check"></hs-icon>
+                <div class="font-bold text-xs text-white">not detected</div>
+              </div>
+            </ng-template>
+        </ng-container>
+      </div>
+      <div class="flex mt-4">
+        <ng-container *ngIf="report.batchStats.failRatio as failChecks; else checksPassed">
+          <div class="summary summary--bad">
+            <div class="summary__title">Checks</div>
+            <div class="summary__cell">
               <div class="summary__status">
-                {{ checksSummary.percentOfFailedRecords }}%
+                {{ failChecks * 100 }}%
               </div>
               <div class="summary__description">failed records</div>
-              <div class="summary__opener" (click)="revealDetails('checks')">
-                click to reveal
-              </div>
-            </ng-container>
-          </ng-container>
-        </div>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="report.summary.suspicious as suspiciousSummary">
-      <div class="summary" [ngClass]="'summary--' + suspiciousSummary.grade">
-        <div class="summary__title">Suspicious records</div>
-        <div class="summary__cell">
-          <div class="summary__status">
-            {{ suspiciousSummary.percentOfSuspiciousChecks }}%
-          </div>
-          <div class="summary__description">suspicious records</div>
-
-          <div class="summary__opener" (click)="revealDetails('suspicious')">
-            click to reveal
-          </div>
-        </div>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="report.summary.drift as driftSummary">
-      <div class="summary" [ngClass]="'summary--' + driftSummary.grade">
-        <div class="summary__title">Data drift</div>
-        <div class="summary__cell">
-          <ng-container [ngSwitch]="driftSummary.drifted">
-            <div class="summary__status" *ngSwitchCase="false">
-              Drift not found
             </div>
-            <ng-container *ngSwitchDefault>
-              <div class="summary__status">Drifted</div>
-              <div class="summary__opener" (click)="revealDetails('drift')">
-                click to reveal
-              </div>
-            </ng-container>
-          </ng-container>
-        </div>
-      </div>
-    </ng-container>
-
-    <ng-container *ngIf="report.summary.overallDrift as driftSummary">
-      <div class="summary" [ngClass]="'summary--' + driftSummary.grade">
-        <div class="summary__title">Data drift</div>
-        <div class="summary__cell">
-          <ng-container [ngSwitch]="driftSummary.drifted">
-            <div class="summary__status" *ngSwitchCase="false">
-              Drift not found
+          </div>
+        </ng-container>
+        <ng-template #checksPassed>
+          <div class="summary summary--excellent">
+            <div class="summary__title">Checks</div>
+            <div class="summary__cell">
+              <div class="summary__status">Checks passed</div>
             </div>
-            <ng-container *ngSwitchDefault>
-              <div class="summary__status">Drifted</div>
-              <div
-                class="summary__opener"
-                (click)="revealDetails('overallDrift')"
-              >
-                click to reveal
+          </div>
+        </ng-template>
+
+        <ng-container *ngIf="report.batchStats.susVerdict as suspiciousVerdict">
+          <div class="summary" [ngClass]="'summary--' + suspiciousVerdict">
+            <div class="summary__title">Suspicious records</div>
+            <div class="summary__cell">
+              <div class="w-10 h-10" [ngSwitch]="suspiciousVerdict">
+                <div *ngSwitchCase="'excellent'">
+                  <hs-icon class="text-green-600" name="check" [matTooltip]="suspiciousVerdict!" matTooltipPosition="right"></hs-icon>
+                </div>
+                <div *ngSwitchCase="'good'">
+                  <hs-icon class="text-green-500" name="check" [matTooltip]="suspiciousVerdict!" matTooltipPosition="right"></hs-icon>
+                </div>
+                <div *ngSwitchCase="'fair'">
+                  <hs-icon class="text-yellow-600" name="error" [matTooltip]="suspiciousVerdict!" matTooltipPosition="right"></hs-icon>
+                </div>
+                <div *ngSwitchCase="'bad'">
+                  <hs-icon class="text-red-600" name="error" [matTooltip]="suspiciousVerdict!" matTooltipPosition="right"></hs-icon>
+                </div>
+                <div *ngSwitchDefault>
+                  <hs-icon class="text-gray-500" name="help" matTooltip="unknown" matTooltipPosition="right"></hs-icon>
+                </div>
               </div>
-            </ng-container>
+              <div class="summary__opener" (click)="showSuspiciousDetails()">
+                <div *ngIf="showSuspicious; else showDetails">hide details</div>
+                <ng-template #showDetails>show details</ng-template>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="report.features as driftSummary">
+          <ng-container *ngIf="driftSummary.length > 0; else notDetected">
+            <div class="summary summary--bad">
+              <div class="summary__title">Data drift</div>
+              <div class="summary__cell">
+                <hs-icon class="w-10 h-10 text-red-600" name="error" matTooltip="detected" matTooltipPosition="right"></hs-icon>
+                <div class="summary__opener" (click)="showDriftDetails()">
+                  <div *ngIf="showDrift; else showDetails">hide details</div>
+                  <ng-template #showDetails>show details</ng-template>
+                </div>
+              </div>
+            </div>
           </ng-container>
-        </div>
+          <ng-template #notDetected>
+            <div class="summary summary--excellent">
+              <div class="summary__title">Data drift</div>
+              <div class="summary__cell">
+                <hs-icon class="w-10 h-10 text-green-600" name="check" matTooltip="not detected" matTooltipPosition="right"></hs-icon>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
       </div>
-    </ng-container>
+    </div>
   </div>
 
-  <div *ngIf="selectedDetails">
-    <div class="font-bold text-gray-900">Details</div>
+  <div *ngIf="showSuspicious || showDrift" class="mt-4 rounded-md shadow-lg p-8 bg-white w-full">
+    <ng-container *ngIf="showSuspicious">
+      <div class="font-light text-gray-600 mb-1">Details</div>
+      <div class="font-bold text-gray-900">Suspicious records</div>
+      <div class="flex justify-between mt-3">
+        <div class="flex items-end">
+          <div class="text-gray-600">Ratio of suspicious records in the batch in respect to training data:</div>
+          <div class="font-bold ml-2">{{report.batchStats.susRatio | number:'1.1-1'}}</div>
+        </div>
+        <hs-button kind="stroked" color="primary" label="See profiler" [routerLink]="['/', 'models', modelName$ | async, modelVersion$ | async, 'profiler']"></hs-button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showDrift">
+      <div class="font-light text-gray-600 mb-1">Details</div>
+      <div class="font-bold text-gray-900">Data drift</div>
+      <div class="flex justify-between mt-4">
+        <div class="flex flex-col">
+          <div class="text-gray-700">Drifted features:</div>
+          <div *ngFor="let feat of report.features" class="font-bold ml-2">
+            <div class="font-bold">- {{feat}}</div>
+          </div>
+        </div>
+        <hs-button kind="stroked" color="primary" label="See drift report" [routerLink]="['/', 'models', modelName$ | async, modelVersion$ | async, 'reports']"></hs-button>
+      </div>
+    </ng-container>
   </div>
 </div>

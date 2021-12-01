@@ -34,7 +34,7 @@ const routes: Routes = [
             canActivate: [CanActivateModelVersionGuard],
           },
           {
-            path: ':modelName/:modelVersion/report/:reportName',
+            path: ':modelName/:modelVersion/report/:file',
             component: ReportComponent,
           },
         ],
