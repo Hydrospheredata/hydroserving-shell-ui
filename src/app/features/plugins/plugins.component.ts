@@ -12,9 +12,6 @@ export class PluginsComponent {
   plugins$ = this.query.all$;
   constructor(private query: PluginsQuery, private service: PluginsService) {}
 
-  // activePlugins$ = this.query.selectActivatePlugins();
-  // nonActivePlugins$ = this.query.selectNonActivatePlugins();
-
   activate(plugin: Plugin) {
     this.service.activate(plugin);
   }

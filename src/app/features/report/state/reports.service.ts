@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { ShellHttpService } from 'src/app/shell-http.service';
 import { environment } from '@environments/environment';
 import { combineLatest, Observable } from 'rxjs';
-import { ReportsStore } from '@app/features/report/state/reports.store';
 import { Report } from '@app/features/report/state/report.model';
 import { map, switchMap } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Injectable({ providedIn: 'root' })
 export class ReportsService {
-  constructor(private store: ReportsStore, private http: ShellHttpService) {}
+  constructor(private http: ShellHttpService) {}
 
   apiUrl = environment.apiUrl;
 

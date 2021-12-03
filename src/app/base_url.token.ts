@@ -13,14 +13,18 @@ export function hsBaseUrlFactory(baseHref: string = ''): string {
 }
 
 export function hsAbsoluteUrlFactory(baseHref: string = ''): string {
-  // const { protocol, hostname } = window.location;
-  // return environment.production
-  //   ? `${protocol}//${hostname}${baseHref}`
-  //   : `${environment.host}${
-  //       environment.port ? ':' + environment.port : ''
-  //     }${baseHref}`;
+  return environment.production
+    ? urlForProduction(baseHref)
+    : urlForDeveloping(baseHref);
+}
 
-  return `${environment.host}${
-    environment.port ? ':' + environment.port : ''
-  }${baseHref}`;
+function urlForProduction(baseHref: string = '') {
+  const { protocol, hostname } = window.location;
+  return `${protocol}//${hostname}${baseHref}`;
+}
+
+function urlForDeveloping(baseHref: string = '') {
+  const { host, port } = environment;
+
+  return `${host}${port ? ':' + port : ''}${baseHref}`;
 }
