@@ -38,7 +38,7 @@ export class PluginsService {
   }
 
   activate(plugin: Plugin) {
-    this.store.update(plugin.name, e => ({ ...e, state: 'active' }));
+    this.store.update(plugin.name, plugin => ({ ...plugin, state: 'active' }));
 
     this.registerPluginIntoPlatform(plugin);
   }
