@@ -32,7 +32,7 @@
             <div class="summary__title">Checks</div>
             <div class="summary__cell">
               <div class="summary__status">
-                {{ failChecks * 100 }}%
+                {{ failChecks * 100 | number:'1.2-2' }}%
               </div>
               <div class="summary__description">failed records</div>
             </div>
