@@ -1,11 +1,7 @@
 .summary {
-  @apply flex flex-1 flex-col h-36 bg-white mr-4 rounded-md p-4;
+  @apply bg-white rounded-md p-4 h-28;
   &__title {
-    @apply font-bold mb-2 text-sm text-gray-700;
-  }
-
-  &__cell {
-    @apply flex flex-1 justify-center items-center flex-col mr-6;
+    @apply text-gray-500 font-light text-sm mb-1;
   }
 
   &__status {
@@ -17,7 +13,7 @@
   }
 
   &__opener {
-    @apply text-center text-xs text-blue-600 cursor-pointer mt-3 hover:text-blue-900;
+    @apply text-xs uppercase text-right text-blue-500 cursor-pointer mt-3 hover:text-blue-600;
   }
 }
 
@@ -84,5 +80,3 @@
   //   @apply text-red-900;
   // }
 }
-
-

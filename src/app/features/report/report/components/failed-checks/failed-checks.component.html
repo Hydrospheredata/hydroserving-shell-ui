@@ -1,15 +1,14 @@
 <ng-container *ngIf="failRatio; else checksPassed">
-  <div class="summary summary--bad">
-    <div class="summary__title">Checks</div>
-    <div class="summary__cell">
-      <div class="summary__status">{{ failRatio * 100 }}%</div>
-      <div class="summary__description">failed records</div>
+  <div class="summary">
+    <div class="summary__title">Failed records</div>
+    <div class="font-bold text-xl text-gray-900">
+      {{ failRatio * 100 | number: '1.2-2' }}%
     </div>
   </div>
 </ng-container>
 <ng-template #checksPassed>
   <div class="summary summary--excellent">
-    <div class="summary__title">Checks</div>
+    <div class="summary__title">Failed records</div>
     <div class="summary__cell">
       <div class="summary__status">Checks passed</div>
     </div>

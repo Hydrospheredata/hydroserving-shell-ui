@@ -17,11 +17,7 @@ export class ReportComponent {
   modelName$ = this.routerQuery.selectParams('modelName');
   modelVersion$ = this.routerQuery.selectParams('modelVersion');
 
-  constructor(
-    private routerQuery: RouterQuery,
-    private facade: ReportsFacade,
-    private query: ReportsQuery,
-  ) {}
+  constructor(private routerQuery: RouterQuery, private query: ReportsQuery) {}
 
   showSuspiciousDetails() {
     this.showDrift = false;

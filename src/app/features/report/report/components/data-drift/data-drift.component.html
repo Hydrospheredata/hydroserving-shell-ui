@@ -1,0 +1,16 @@
+<div class="summary" *ngIf="driftedFeatures.length > 0; else notDetected">
+  <div class="text-gray-500 font-light text-sm mb-1">Drifted features</div>
+  <div class="font-bold text-xl text-red-600">
+    {{ driftedFeatures.length }}
+  </div>
+  <div class="summary__opener" (click)="show()">
+    <div *ngIf="showedDetails; else showDetails">hide details</div>
+    <ng-template #showDetails>show details</ng-template>
+  </div>
+</div>
+<ng-template #notDetected>
+  <div class="summary">
+    <div class="text-gray-500 font-light text-sm mb-1">Drifted features</div>
+    <div class="font-black text-green-700">0</div>
+  </div>
+</ng-template>

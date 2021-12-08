@@ -1,53 +1,55 @@
-<ng-container *ngIf="report.batchStats.susVerdict as suspiciousVerdict">
-  <div class="summary" [ngClass]="'summary--' + suspiciousVerdict">
-    <div class="summary__title">Suspicious records</div>
-    <div class="summary__cell">
-      <div class="w-10 h-10" [ngSwitch]="suspiciousVerdict">
-        <div *ngSwitchCase="'excellent'">
-          <hs-icon
-            class="text-green-600"
-            name="check"
-            [matTooltip]="suspiciousVerdict!"
-            matTooltipPosition="right"
-          ></hs-icon>
-        </div>
-        <div *ngSwitchCase="'good'">
-          <hs-icon
-            class="text-green-500"
-            name="check"
-            [matTooltip]="suspiciousVerdict!"
-            matTooltipPosition="right"
-          ></hs-icon>
-        </div>
-        <div *ngSwitchCase="'fair'">
-          <hs-icon
-            class="text-yellow-600"
-            name="error"
-            [matTooltip]="suspiciousVerdict!"
-            matTooltipPosition="right"
-          ></hs-icon>
-        </div>
-        <div *ngSwitchCase="'bad'">
-          <hs-icon
-            class="text-red-600"
-            name="error"
-            [matTooltip]="suspiciousVerdict!"
-            matTooltipPosition="right"
-          ></hs-icon>
-        </div>
-        <div *ngSwitchDefault>
-          <hs-icon
-            class="text-gray-500"
-            name="help"
-            matTooltip="unknown"
-            matTooltipPosition="right"
-          ></hs-icon>
-        </div>
-      </div>
-      <div class="summary__opener" (click)="showSuspiciousDetails()">
-        <div *ngIf="showSuspicious; else showDetails">hide details</div>
-        <ng-template #showDetails>show details</ng-template>
-      </div>
+<ng-container *ngIf="susVerdict as suspiciousVerdict">
+  <div class="summary">
+    <div class="text-gray-500 font-light text-sm mb-1">Suspicious records</div>
+    <div class="font-bold text-xl text-gray-900">
+      {{ suspiciousVerdict }}
+    </div>
+    <div class="summary__opener" (click)="show()">
+      <div *ngIf="showedDetails; else showDetails">hide details</div>
+      <ng-template #showDetails>show details</ng-template>
     </div>
   </div>
 </ng-container>
+
+<!-- <div class="w-10 h-10" [ngSwitch]="suspiciousVerdict">
+  <div *ngSwitchCase="'excellent'">
+    <hs-icon
+      class="text-green-600"
+      name="check"
+      [matTooltip]="suspiciousVerdict!"
+      matTooltipPosition="right"
+    ></hs-icon>
+  </div>
+  <div *ngSwitchCase="'good'">
+    <hs-icon
+      class="text-green-500"
+      name="check"
+      [matTooltip]="suspiciousVerdict!"
+      matTooltipPosition="right"
+    ></hs-icon>
+  </div>
+  <div *ngSwitchCase="'fair'">
+    <hs-icon
+      class="text-yellow-600"
+      name="error"
+      [matTooltip]="suspiciousVerdict!"
+      matTooltipPosition="right"
+    ></hs-icon>
+  </div>
+  <div *ngSwitchCase="'bad'">
+    <hs-icon
+      class="text-red-600"
+      name="error"
+      [matTooltip]="suspiciousVerdict!"
+      matTooltipPosition="right"
+    ></hs-icon>
+  </div>
+  <div *ngSwitchDefault>
+    <hs-icon
+      class="text-gray-500"
+      name="help"
+      matTooltip="unknown"
+      matTooltipPosition="right"
+    ></hs-icon>
+  </div>
+</div> -->

@@ -14,97 +14,26 @@
           [driftDetected]="report.overallDrift"
         ></hs-overall-drift>
       </div>
-      <div class="flex mt-4">
-        <hs-failed-checks
-          [failRatio]="report.batchStats.failRatio"
-        ></hs-failed-checks>
-
-        <ng-container *ngIf="report.batchStats.susVerdict as suspiciousVerdict">
-          <div class="summary" [ngClass]="'summary--' + suspiciousVerdict">
-            <div class="summary__title">Suspicious records</div>
-            <div class="summary__cell">
-              <div class="w-10 h-10" [ngSwitch]="suspiciousVerdict">
-                <div *ngSwitchCase="'excellent'">
-                  <hs-icon
-                    class="text-green-600"
-                    name="check"
-                    [matTooltip]="suspiciousVerdict!"
-                    matTooltipPosition="right"
-                  ></hs-icon>
-                </div>
-                <div *ngSwitchCase="'good'">
-                  <hs-icon
-                    class="text-green-500"
-                    name="check"
-                    [matTooltip]="suspiciousVerdict!"
-                    matTooltipPosition="right"
-                  ></hs-icon>
-                </div>
-                <div *ngSwitchCase="'fair'">
-                  <hs-icon
-                    class="text-yellow-600"
-                    name="error"
-                    [matTooltip]="suspiciousVerdict!"
-                    matTooltipPosition="right"
-                  ></hs-icon>
-                </div>
-                <div *ngSwitchCase="'bad'">
-                  <hs-icon
-                    class="text-red-600"
-                    name="error"
-                    [matTooltip]="suspiciousVerdict!"
-                    matTooltipPosition="right"
-                  ></hs-icon>
-                </div>
-                <div *ngSwitchDefault>
-                  <hs-icon
-                    class="text-gray-500"
-                    name="help"
-                    matTooltip="unknown"
-                    matTooltipPosition="right"
-                  ></hs-icon>
-                </div>
-              </div>
-              <div class="summary__opener" (click)="showSuspiciousDetails()">
-                <div *ngIf="showSuspicious; else showDetails">hide details</div>
-                <ng-template #showDetails>show details</ng-template>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-
-        <ng-container *ngIf="report.features as driftSummary">
-          <ng-container *ngIf="driftSummary.length > 0; else notDetected">
-            <div class="summary summary--bad">
-              <div class="summary__title">Data drift</div>
-              <div class="summary__cell">
-                <hs-icon
-                  class="w-10 h-10 text-red-600"
-                  name="error"
-                  matTooltip="detected"
-                  matTooltipPosition="right"
-                ></hs-icon>
-                <div class="summary__opener" (click)="showDriftDetails()">
-                  <div *ngIf="showDrift; else showDetails">hide details</div>
-                  <ng-template #showDetails>show details</ng-template>
-                </div>
-              </div>
-            </div>
-          </ng-container>
-          <ng-template #notDetected>
-            <div class="summary summary--excellent">
-              <div class="summary__title">Data drift</div>
-              <div class="summary__cell">
-                <hs-icon
-                  class="w-10 h-10 text-green-600"
-                  name="check"
-                  matTooltip="not detected"
-                  matTooltipPosition="right"
-                ></hs-icon>
-              </div>
-            </div>
-          </ng-template>
-        </ng-container>
+      <div class="flex mt-4 gap-4">
+        <div class="w-full">
+          <hs-failed-checks
+            [failRatio]="report.batchStats.failRatio"
+          ></hs-failed-checks>
+        </div>
+        <div class="w-full">
+          <hs-suspicious-checks
+            [susVerdict]="report.batchStats.susVerdict"
+            [showedDetails]="showSuspicious"
+            (showed)="showSuspiciousDetails()"
+          ></hs-suspicious-checks>
+        </div>
+        <div class="w-full">
+          <hs-data-drift
+            [driftedFeatures]="report.features"
+            [showedDetails]="showDrift"
+            (showed)="showDriftDetails()"
+          ></hs-data-drift>
+        </div>
       </div>
     </div>
   </div>

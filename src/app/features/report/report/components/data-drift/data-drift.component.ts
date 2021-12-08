@@ -7,23 +7,17 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'hs-suspicious-checks',
-  templateUrl: './suspicious-checks.component.html',
-  styleUrls: [
-    './suspicious-checks.component.scss',
-    '../../report.component.scss',
-  ],
+  selector: 'hs-data-drift',
+  templateUrl: './data-drift.component.html',
+  styleUrls: ['./data-drift.component.scss', '../../report.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SuspiciousChecksComponent {
-  @Input() susVerdict: any;
+export class DataDriftComponent {
+  @Input() driftedFeatures: string[] = [];
   @Input() showedDetails: boolean = false;
-
   @Output() showed = new EventEmitter<boolean>();
 
-  constructor() {}
-
-  show(): void {
+  show() {
     this.showed.emit();
   }
 }

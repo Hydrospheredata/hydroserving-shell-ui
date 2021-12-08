@@ -9,9 +9,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { OverallDriftComponent } from './report/components/overall-drift/overall-drift.component';
 import { FailedChecksComponent } from './report/components/failed-checks/failed-checks.component';
 import { SuspiciousChecksComponent } from './report/components/suspicious-checks/suspicious-checks.component';
+import { DataDriftComponent } from './report/components/data-drift/data-drift.component';
 
 @NgModule({
-  declarations: [ReportsComponent, ReportComponent, OverallDriftComponent, FailedChecksComponent, SuspiciousChecksComponent],
+  declarations: [
+    ReportsComponent,
+    ReportComponent,
+    OverallDriftComponent,
+    FailedChecksComponent,
+    SuspiciousChecksComponent,
+    DataDriftComponent,
+  ],
   imports: [
     CommonModule,
     MatTableModule,
