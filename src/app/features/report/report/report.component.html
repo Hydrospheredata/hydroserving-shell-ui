@@ -111,7 +111,7 @@
           <div class="text-gray-600">Ratio of suspicious records in the batch in respect to training data:</div>
           <div class="font-bold ml-2">{{report.batchStats.susRatio | number:'1.1-1'}}</div>
         </div>
-        <hs-button kind="stroked" color="primary" label="See profiler" [routerLink]="['/', 'models', modelName$ | async, modelVersion$ | async, 'profiler']"></hs-button>
+        <hs-button kind="stroked" color="primary" label="See profiler" [routerLink]="['/', 'models', modelName$ | async, modelVersion$ | async, 'profiler', encode(report.file)]"></hs-button>
       </div>
     </ng-container>
     <ng-container *ngIf="showDrift">
@@ -124,7 +124,7 @@
             <div class="font-bold">- {{feat}}</div>
           </div>
         </div>
-        <hs-button kind="stroked" color="primary" label="See drift report" [routerLink]="['/', 'models', modelName$ | async, modelVersion$ | async, 'reports']"></hs-button>
+        <hs-button kind="stroked" color="primary" label="See drift report" [routerLink]="['/', 'models', modelName$ | async, modelVersion$ | async, 'reports', encode(report.file)]"></hs-button>
       </div>
     </ng-container>
   </div>

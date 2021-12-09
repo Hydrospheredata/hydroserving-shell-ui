@@ -64,7 +64,10 @@ export class ReportsQuery extends Query<ReportsState> {
       this.routerQuery.selectParams('file'),
     ]).pipe(
       map(([reports, file]) => {
-        return reports.find((report: { file: any }) => report.file === file);
+        const decodedFile = atob(file);
+        return reports.find(
+          (report: { file: any }) => report.file === decodedFile,
+        );
       }),
     );
   }

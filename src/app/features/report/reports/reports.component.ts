@@ -17,4 +17,8 @@ export class ReportsComponent {
   constructor(private facade: ReportsFacade, private query: ReportsQuery) {
     this.facade.loadAllReports();
   }
+
+  encode(url: string) {
+    return btoa(url);
+  }
 }
