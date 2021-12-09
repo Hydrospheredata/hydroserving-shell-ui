@@ -15,7 +15,7 @@
       <mat-cell class="font-bold" *matCellDef="let element">
         <ng-container *ngIf="element.batchStats.failRatio as failChecks; else checksPassed">
           <div class="text-red-600">
-            {{failChecks * 100}}% failed
+            {{ failChecks * 100 | number:'1.2-2' }}% failed
           </div>
         </ng-container>
         <ng-template #checksPassed>

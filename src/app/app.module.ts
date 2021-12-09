@@ -9,7 +9,12 @@ import { ApplicationsModule } from './features/applications/applications.module'
 import { HttpClientModule } from '@angular/common/http';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { PluginsModule } from './features/plugins/plugins.module';
-import { hsAbsoluteUrlFactory, HS_ABSOLUTE_URL } from './base_url.token';
+import {
+  hsAbsoluteUrlFactory,
+  hsBaseUrlFactory,
+  HS_ABSOLUTE_URL,
+  HS_BASE_URL,
+} from './base_url.token';
 import { APP_BASE_HREF } from '@angular/common';
 import { baseHrefFactory } from './base-href-factory.util';
 import { ModelsModule } from './features/models/models.module';
@@ -46,6 +51,11 @@ import { SharedModule } from '@app/shared/shared.module';
     {
       provide: APP_BASE_HREF,
       useFactory: () => baseHrefFactory(),
+    },
+    {
+      provide: HS_BASE_URL,
+      useFactory: (href: string) => hsBaseUrlFactory(href),
+      deps: [APP_BASE_HREF],
     },
     {
       provide: HS_ABSOLUTE_URL,
