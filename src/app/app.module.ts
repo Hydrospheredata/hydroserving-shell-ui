@@ -9,13 +9,10 @@ import { ApplicationsModule } from './features/applications/applications.module'
 import { HttpClientModule } from '@angular/common/http';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { PluginsModule } from './features/plugins/plugins.module';
-import { MatTableModule } from '@angular/material/table';
 import { hsAbsoluteUrlFactory, HS_ABSOLUTE_URL } from './base_url.token';
 import { APP_BASE_HREF } from '@angular/common';
 import { baseHrefFactory } from './base-href-factory.util';
 import { ModelsModule } from './features/models/models.module';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReportModule } from '@app/features/report/report.module';
 import {
   hsIconsCheck,
@@ -27,6 +24,7 @@ import {
   hsIconsIconModels,
   IconsRegistryService,
 } from '@hydrosphere/hs-ui-kit';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,9 +40,7 @@ import {
     HttpClientModule,
     AppRoutingModule,
     AkitaNgRouterStoreModule,
-    MatTableModule,
-    MatTooltipModule,
-    MatSnackBarModule,
+    SharedModule,
   ],
   providers: [
     {

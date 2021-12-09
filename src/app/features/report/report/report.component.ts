@@ -32,8 +32,4 @@ export class ReportComponent {
     this.showSuspicious = false;
     this.showDrift = !this.showDrift;
   }
-
-  encode(url: string) {
-    return btoa(url);
-  }
 }
