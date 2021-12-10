@@ -1,38 +1,27 @@
-<ng-container *ngIf="failRatio; else checksPassed">
-  <div class="summary summary--bad">
-    <div class="summary__title">Failed records</div>
-    <div class="summary__cell">
-      <div class="summary__status" matTooltip="failed checks">
+<div
+  class="summary"
+  [ngClass]="failRatio ? 'summary--bad' : 'summary--excellent'"
+>
+  <div class="summary__title">Failed records</div>
+  <div class="summary__cell">
+    <hs-icon class="w-6 h-6 absolute top-2 right-2 text-gray-400" name="info" matTooltip="failed checks"></hs-icon>
+    <div class="summary__status">
+      <ng-container *ngIf="failRatio; else checksPassed">
         {{ failRatio * 100 | number:'1.2-2' }}%
-      </div>
-      <div class="summary__opener" [routerLink]="[
-        '/',
-        'models',
-        modelName,
-        modelVersion,
-        'profiler',
-        file | base64
-      ]">
-        see details
-      </div>
+      </ng-container>
+    </div>
+    <ng-template #checksPassed>
+      Checks passed
+    </ng-template>
+    <div class="summary__opener" [routerLink]="[
+      '/',
+      'models',
+      modelName,
+      modelVersion,
+      'profiler',
+      file | base64
+    ]">
+      see details
     </div>
   </div>
-</ng-container>
-<ng-template #checksPassed>
-  <div class="summary summary--excellent">
-    <div class="summary__title">Failed records</div>
-    <div class="summary__cell">
-      <div class="summary__status">Checks passed</div>
-      <div class="summary__opener" [routerLink]="[
-        '/',
-        'models',
-        modelName,
-        modelVersion,
-        'profiler',
-        file | base64
-      ]">
-        see details
-      </div>
-    </div>
-  </div>
-</ng-template>
+</div>

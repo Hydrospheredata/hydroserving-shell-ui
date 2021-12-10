@@ -2,27 +2,8 @@
   <div class="summary" [ngClass]="'summary--' + suspiciousVerdict">
     <div class="summary__title">Suspicious records</div>
     <div class="summary__cell">
-      <div class="w-6 h-6 absolute top-2 right-2" [ngSwitch]="suspiciousVerdict">
-        <div *ngSwitchCase="'excellent'">
-          <hs-icon class="text-green-600" name="check" [matTooltip]="suspiciousVerdict!"></hs-icon>
-        </div>
-        <div *ngSwitchCase="'good'">
-          <hs-icon class="text-green-500" name="check" [matTooltip]="suspiciousVerdict!"></hs-icon>
-        </div>
-        <div *ngSwitchCase="'fair'">
-          <hs-icon class="text-yellow-600" name="error" [matTooltip]="suspiciousVerdict!"></hs-icon>
-        </div>
-        <div *ngSwitchCase="'bad'">
-          <hs-icon class="text-red-600" name="error" [matTooltip]="suspiciousVerdict!"></hs-icon>
-        </div>
-        <div *ngSwitchDefault>
-          <hs-icon class="text-gray-500" name="help" matTooltip="unknown"></hs-icon>
-        </div>
-      </div>
-      <div
-        class="summary__status"
-        matTooltip="ratio of suspicious records to training data"
-      >
+      <hs-icon class="w-6 h-6 absolute top-2 right-2 text-gray-400" name="info" matTooltip="ratio of suspicious records to training data"></hs-icon>
+      <div class="summary__status">
         {{ susRatio | number:'1.1-1' }}
       </div>
       <div class="summary__opener" [routerLink]="[
