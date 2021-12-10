@@ -30,19 +30,44 @@
       <mat-cell *matCellDef="let element">
         <div class="w-6 h-6" [ngSwitch]="element.batchStats.susVerdict">
           <div *ngSwitchCase="'excellent'">
-            <hs-icon class="text-green-600" name="check" [matTooltip]="element.batchStats.susVerdict!" matTooltipPosition="right"></hs-icon>
+            <hs-icon
+              class="text-green-600"
+              name="check"
+              [matTooltip]="element.batchStats.susVerdict!"
+              matTooltipPosition="right"
+            ></hs-icon>
           </div>
           <div *ngSwitchCase="'good'">
-            <hs-icon class="text-green-500" name="check" [matTooltip]="element.batchStats.susVerdict!" matTooltipPosition="right"></hs-icon>
+            <hs-icon
+              class="text-green-500"
+              name="check"
+              [matTooltip]="element.batchStats.susVerdict!"
+              matTooltipPosition="right"
+            ></hs-icon>
           </div>
           <div *ngSwitchCase="'fair'">
-            <hs-icon class="text-yellow-600" name="error" [matTooltip]="element.batchStats.susVerdict!" matTooltipPosition="right"></hs-icon>
+            <hs-icon
+              class="text-yellow-600"
+              name="error"
+              [matTooltip]="element.batchStats.susVerdict!"
+              matTooltipPosition="right"
+            ></hs-icon>
           </div>
           <div *ngSwitchCase="'bad'">
-            <hs-icon class="text-red-600" name="error" [matTooltip]="element.batchStats.susVerdict!" matTooltipPosition="right"></hs-icon>
+            <hs-icon
+              class="text-red-600"
+              name="error"
+              [matTooltip]="element.batchStats.susVerdict!"
+              matTooltipPosition="right"
+            ></hs-icon>
           </div>
           <div *ngSwitchDefault>
-            <hs-icon class="text-gray-500" name="help" matTooltip="unknown" matTooltipPosition="right"></hs-icon>
+            <hs-icon
+              class="text-gray-500"
+              name="help"
+              matTooltip="unknown"
+              matTooltipPosition="right"
+            ></hs-icon>
           </div>
         </div>
       </mat-cell>
@@ -50,11 +75,21 @@
     <ng-container matColumnDef="drift">
       <mat-header-cell *matHeaderCellDef> drift </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.features.length > 0; else notDetected">
-          <hs-icon class="w-6 h-6 text-red-600" name="error" matTooltip="detected" matTooltipPosition="right"></hs-icon>
+        <ng-container *ngIf="element.driftedFeatures.length > 0; else notDetected">
+          <hs-icon
+            class="w-6 h-6 text-red-600"
+            name="error"
+            matTooltip="detected"
+            matTooltipPosition="right"
+          ></hs-icon>
         </ng-container>
         <ng-template #notDetected>
-          <hs-icon class="w-6 h-6 text-green-600" name="check" matTooltip="not detected" matTooltipPosition="right"></hs-icon>
+          <hs-icon
+            class="w-6 h-6 text-green-600"
+            name="check"
+            matTooltip="not detected"
+            matTooltipPosition="right"
+          ></hs-icon>
         </ng-template>
       </mat-cell>
     </ng-container>

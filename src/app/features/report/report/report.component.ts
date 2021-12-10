@@ -12,24 +12,8 @@ import { ReportsQuery } from '@app/features/report/state/reports.query';
 })
 export class ReportComponent {
   report$ = this.query.selectCurrentReport();
-  showSuspicious: boolean = false;
-  showDrift: boolean = false;
   modelName$ = this.routerQuery.selectParams('modelName');
   modelVersion$ = this.routerQuery.selectParams('modelVersion');
 
-  constructor(
-    private routerQuery: RouterQuery,
-    private facade: ReportsFacade,
-    private query: ReportsQuery,
-  ) {}
-
-  showSuspiciousDetails() {
-    this.showDrift = false;
-    this.showSuspicious = !this.showSuspicious;
-  }
-
-  showDriftDetails() {
-    this.showSuspicious = false;
-    this.showDrift = !this.showDrift;
-  }
+  constructor(private routerQuery: RouterQuery, private query: ReportsQuery) {}
 }

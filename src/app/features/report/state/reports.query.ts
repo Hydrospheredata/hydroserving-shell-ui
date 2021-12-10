@@ -28,17 +28,25 @@ export class ReportsQuery extends Query<ReportsState> {
   selectReports(): Observable<Report[] | any> {
     return combineQueries([
       this.selectProfilerReports(),
+      this.selectDriftReports(),
       this.selectDriftedFeatures(),
     ]).pipe(
-      map(([reports, features]) => {
-        return reports.map((report: any, index: any) => {
-          return { ...report, features: features[index] };
+      map(([profilerReports, driftReports, driftedFeatures]) => {
+        return profilerReports.map((report: any, index: any) => {
+          const featuresNumber = Object.keys(
+            driftReports[index].featureReports,
+          ).length;
+          return {
+            ...report,
+            driftedFeatures: driftedFeatures[index],
+            featuresNumber,
+          };
         });
       }),
     );
   }
 
-  selectDriftedFeatures(): Observable<string[]> {
+  selectDriftReports(): Observable<Report[] | any> {
     return this.reports$.pipe(
       map(reports =>
         reports.filter(
@@ -46,6 +54,11 @@ export class ReportsQuery extends Query<ReportsState> {
             report.pluginId === 'drift_report_plugin',
         ),
       ),
+    );
+  }
+
+  selectDriftedFeatures(): Observable<string[]> {
+    return this.selectDriftReports().pipe(
       map(reports => {
         return reports.map((report: { [x: string]: any }) => {
           return Object.keys(report.featureReports).filter(key => {

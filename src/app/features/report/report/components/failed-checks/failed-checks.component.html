@@ -1,0 +1,38 @@
+<ng-container *ngIf="failRatio; else checksPassed">
+  <div class="summary summary--bad">
+    <div class="summary__title">Failed records</div>
+    <div class="summary__cell">
+      <div class="summary__status" matTooltip="failed checks">
+        {{ failRatio * 100 | number:'1.2-2' }}%
+      </div>
+      <div class="summary__opener" [routerLink]="[
+        '/',
+        'models',
+        modelName,
+        modelVersion,
+        'profiler',
+        file | base64
+      ]">
+        see details
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #checksPassed>
+  <div class="summary summary--excellent">
+    <div class="summary__title">Failed records</div>
+    <div class="summary__cell">
+      <div class="summary__status">Checks passed</div>
+      <div class="summary__opener" [routerLink]="[
+        '/',
+        'models',
+        modelName,
+        modelVersion,
+        'profiler',
+        file | base64
+      ]">
+        see details
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -5,7 +5,7 @@
   }
 
   &__cell {
-    @apply flex flex-1 justify-center items-center bg-blue-50 flex-col rounded-md shadow-sm p-4 mr-6 border-2 border-blue-300;
+    @apply flex flex-1 relative justify-center items-center bg-blue-50 flex-col rounded-md shadow-md p-4 mr-6;
   }
 
   &__status {
@@ -22,69 +22,65 @@
 }
 
 .summary--excellent {
-  & .summary__cell {
-    @apply bg-green-100 border-green-500;
-  }
-  & .summary__status {
-    @apply text-green-800;
-  }
-  & .summary__text {
-    @apply text-green-800;
-  }
+   & .summary__cell {
+     @apply bg-green-100;
+   }
+   & .summary__status {
+     @apply text-green-800;
+   }
+   & .summary__text {
+     @apply text-green-800;
+   }
 
-  & .summary__description {
-    @apply text-green-800;
-  }
+   & .summary__description {
+     @apply text-green-800;
+   }
 }
 
 .summary--good {
-  & .summary__cell {
-    @apply bg-green-50 border-green-300;
-  }
-  & .summary__status {
-    @apply text-green-800;
-  }
-  & .summary__text {
-    @apply text-green-800;
-  }
+   & .summary__cell {
+     @apply bg-green-50;
+   }
+   & .summary__status {
+     @apply text-green-800;
+   }
+   & .summary__text {
+     @apply text-green-800;
+   }
 
-  & .summary__description {
-    @apply text-green-800;
-  }
+   & .summary__description {
+     @apply text-green-800;
+   }
 }
 
 .summary--fair {
-  & .summary__cell {
-    @apply bg-yellow-50 border-yellow-300;
-  }
-  & .summary__status {
-    @apply text-yellow-900;
-  }
-  & .summary__text {
-    @apply text-yellow-900;
-  }
+   & .summary__cell {
+     @apply bg-yellow-50;
+   }
+   & .summary__status {
+     @apply text-yellow-900;
+   }
+   & .summary__text {
+     @apply text-yellow-900;
+   }
 
-  & .summary__description {
-    @apply text-yellow-900;
-  }
+   & .summary__description {
+     @apply text-yellow-900;
+   }
 }
 
 .summary--bad {
-  & .summary__cell {
-    @apply bg-red-50 border-red-300;
-  }
-  & .summary__status {
-    @apply text-red-900;
-  }
-  & .summary__text {
-    @apply text-red-900;
-  }
+   & .summary__cell {
+     @apply bg-red-50;
+   }
+   & .summary__status {
+     @apply text-red-900;
+   }
+   & .summary__text {
+     @apply text-red-900;
+   }
 
-  & .summary__description {
-    @apply text-red-900;
-  }
-}
-
-.overall-drift {
-  @apply rounded-full flex justify-between items-center ml-3 px-2 py-1;
+   & .summary__description {
+     @apply text-red-900;
+   }
 }
