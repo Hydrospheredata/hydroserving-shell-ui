@@ -13,13 +13,15 @@
     <ng-container matColumnDef="checks">
       <mat-header-cell *matHeaderCellDef> checks </mat-header-cell>
       <mat-cell class="font-bold" *matCellDef="let element">
-        <ng-container
-          *ngIf="element.batchStats.failRatio as failChecks; else checksPassed"
-        >
-          <div class="text-red-600">{{ failChecks * 100 }}% failed</div>
+        <ng-container *ngIf="element.batchStats.failRatio as failChecks; else checksPassed">
+          <div class="text-red-600">
+            {{ failChecks * 100 | number:'1.2-2' }}% failed
+          </div>
         </ng-container>
         <ng-template #checksPassed>
-          <div class="text-green-600">100% passed</div>
+          <div class="text-green-600">
+            100% passed
+          </div>
         </ng-template>
       </mat-cell>
     </ng-container>
@@ -73,7 +75,7 @@
     <ng-container matColumnDef="drift">
       <mat-header-cell *matHeaderCellDef> drift </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <ng-container *ngIf="element.features.length > 0; else notDetected">
+        <ng-container *ngIf="element.driftedFeatures.length > 0; else notDetected">
           <hs-icon
             class="w-6 h-6 text-red-600"
             name="error"
@@ -94,8 +96,8 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row
-      [routerLink]="['report', row.file]"
-      class="cursor-pointer hover:bg-blue-50"
+      [routerLink]="['report', row.file | base64]"
+      class="cursor-pointer"
       *matRowDef="let row; columns: displayedColumns"
     ></mat-row>
   </mat-table>

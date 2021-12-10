@@ -1,10 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'hs-data-drift',
@@ -14,10 +8,8 @@ import {
 })
 export class DataDriftComponent {
   @Input() driftedFeatures: string[] = [];
-  @Input() showedDetails: boolean = false;
-  @Output() showed = new EventEmitter<boolean>();
-
-  show() {
-    this.showed.emit();
-  }
+  @Input() featuresNumber!: number;
+  @Input() modelName: string = '';
+  @Input() modelVersion!: number;
+  @Input() file: string = '';
 }

@@ -9,89 +9,34 @@
 
   <div class="flex mb-6">
     <div class="w-full">
-      <div class="flex items-center">
-        <hs-overall-drift
-          [driftDetected]="report.overallDrift"
-        ></hs-overall-drift>
-      </div>
       <div class="flex mt-4 gap-4">
         <div class="w-full">
           <hs-failed-checks
             [failRatio]="report.batchStats.failRatio"
+            [modelName]="modelName$ | async"
+            [modelVersion]="modelVersion$ | async"
+            [file]="report.file"
           ></hs-failed-checks>
         </div>
         <div class="w-full">
           <hs-suspicious-checks
             [susVerdict]="report.batchStats.susVerdict"
-            [showedDetails]="showSuspicious"
-            (showed)="showSuspiciousDetails()"
+            [susRatio]="report.batchStats.susRatio"
+            [modelName]="modelName$ | async"
+            [modelVersion]="modelVersion$ | async"
+            [file]="report.file"
           ></hs-suspicious-checks>
         </div>
         <div class="w-full">
           <hs-data-drift
-            [driftedFeatures]="report.features"
-            [showedDetails]="showDrift"
-            (showed)="showDriftDetails()"
+            [driftedFeatures]="report.driftedFeatures"
+            [featuresNumber]="report.featuresNumber"
+            [modelName]="modelName$ | async"
+            [modelVersion]="modelVersion$ | async"
+            [file]="report.file"
           ></hs-data-drift>
         </div>
       </div>
     </div>
-  </div>
-
-  <div
-    *ngIf="showSuspicious || showDrift"
-    class="mt-4 rounded-md shadow-lg p-8 bg-white w-full"
-  >
-    <ng-container *ngIf="showSuspicious">
-      <div class="font-light text-gray-600 mb-1">Details</div>
-      <div class="font-bold text-gray-800">Suspicious records</div>
-      <div class="flex justify-between mt-3">
-        <div class="flex items-end">
-          <div class="text-gray-600">
-            Ratio of suspicious records in the batch in respect to training
-            data:
-          </div>
-          <div class="font-bold ml-2">
-            {{ report.batchStats.susRatio | number: '1.1-1' }}
-          </div>
-        </div>
-        <hs-button
-          kind="stroked"
-          color="primary"
-          label="See profiler"
-          [routerLink]="[
-            '/',
-            'models',
-            modelName$ | async,
-            modelVersion$ | async,
-            'profiler'
-          ]"
-        ></hs-button>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="showDrift">
-      <div class="font-light text-gray-600 mb-1">Details</div>
-      <div class="font-bold text-gray-900">Data drift</div>
-      <div class="flex justify-between mt-4">
-        <div class="flex flex-col">
-          <div class="text-gray-700">Drifted features:</div>
-          <div *ngFor="let feat of report.features" class="font-bold ml-2">
-            <div class="font-bold">- {{ feat }}</div>
-          </div>
-        </div>
-        <hs-button
-          kind="stroked"
-          color="primary"
-          label="See drift report"
-          [routerLink]="[
-            '/',
-            'models',
-            modelName$ | async,
-            modelVersion$ | async,
-            'reports'
-          ]"
-        ></hs-button>
-      </div>
-    </ng-container>
   </div>
 </div>

@@ -1,16 +1,48 @@
 <div class="summary" *ngIf="driftedFeatures.length > 0; else notDetected">
-  <div class="text-gray-500 font-light text-sm mb-1">Drifted features</div>
-  <div class="font-bold text-xl text-red-600">
-    {{ driftedFeatures.length }}
-  </div>
-  <div class="summary__opener" (click)="show()">
-    <div *ngIf="showedDetails; else showDetails">hide details</div>
-    <ng-template #showDetails>show details</ng-template>
+  <div class="summary summary--bad">
+    <div class="summary__title">Data drift</div>
+    <div class="summary__cell">
+      <hs-icon class="w-6 h-6 absolute top-2 right-2 text-red-600" name="error" matTooltip="detected"></hs-icon>
+      <div
+        class="summary__status"
+        matTooltip="drifted features count / total features"
+      >
+        {{ driftedFeatures.length }}/{{featuresNumber}}
+      </div>
+      <div class="summary__opener" [routerLink]="[
+        '/',
+        'models',
+        modelName,
+        modelVersion,
+        'reports',
+        file | base64
+      ]">
+        see details
+      </div>
+    </div>
   </div>
 </div>
 <ng-template #notDetected>
-  <div class="summary">
-    <div class="text-gray-500 font-light text-sm mb-1">Drifted features</div>
-    <div class="font-black text-green-700">0</div>
+  <div class="summary summary--excellent">
+    <div class="summary__title">Data drift</div>
+    <div class="summary__cell">
+      <hs-icon class="w-6 h-6 absolute top-2 right-2 text-green-600" name="check" matTooltip="not detected"></hs-icon>
+      <div
+        class="summary__status"
+        matTooltip="drifted features count / total features"
+      >
+        {{ driftedFeatures.length }}/{{featuresNumber}}
+      </div>
+      <div class="summary__opener" [routerLink]="[
+        '/',
+        'models',
+        modelName,
+        modelVersion,
+        'reports',
+        file | base64
+      ]">
+        see details
+      </div>
+    </div>
   </div>
 </ng-template>

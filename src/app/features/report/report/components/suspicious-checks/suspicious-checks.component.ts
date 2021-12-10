@@ -1,10 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'hs-suspicious-checks',
@@ -17,13 +11,10 @@ import {
 })
 export class SuspiciousChecksComponent {
   @Input() susVerdict: any;
-  @Input() showedDetails: boolean = false;
-
-  @Output() showed = new EventEmitter<boolean>();
+  @Input() susRatio: any;
+  @Input() modelName: string = '';
+  @Input() modelVersion!: number;
+  @Input() file: string = '';
 
   constructor() {}
-
-  show(): void {
-    this.showed.emit();
-  }
 }

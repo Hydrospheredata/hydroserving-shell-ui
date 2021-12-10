@@ -12,5 +12,4 @@ export interface Report {
     susVerdict: string;
     failRatio: number;
   };
-  overallDrift: undefined;
 }

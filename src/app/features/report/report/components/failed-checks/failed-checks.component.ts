@@ -8,5 +8,9 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class FailedChecksComponent {
   @Input() failRatio: number = 0;
+  @Input() modelName: string = '';
+  @Input() modelVersion!: number;
+  @Input() file: string = '';
+
   constructor() {}
 }
