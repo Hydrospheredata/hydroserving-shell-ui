@@ -27,6 +27,7 @@ import {
   hsIconsIconErrorOutline,
   hsIconsIconLeft,
   hsIconsIconModels,
+  hsIconsInfo,
   IconsRegistryService,
 } from '@hydrosphere/hs-ui-kit';
 import { SharedModule } from '@app/shared/shared.module';
@@ -75,6 +76,7 @@ export class AppModule {
       hsIconsCheck,
       hsIconsError,
       hsIconsHelp,
+      hsIconsInfo,
     ]);
   }
 }
