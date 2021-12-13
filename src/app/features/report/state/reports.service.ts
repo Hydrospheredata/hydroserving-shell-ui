@@ -36,6 +36,13 @@ export class ReportsService {
         ),
       ),
       map(reports => _.flatten(reports)),
+      map(reports =>
+        reports.sort((a, b) => {
+          return (
+            <any>new Date(a.fileModifiedAt) - <any>new Date(b.fileModifiedAt)
+          );
+        }),
+      ),
     );
   }
 }

@@ -3,7 +3,7 @@ export interface Report {
   modelName: string;
   modelVersion: number;
   file: string;
-  fileModifiedAt: Date;
+  fileModifiedAt: string;
   featureReports: {
     [featureName: string]: Array<{ description: string; isGood: boolean }>;
   };
