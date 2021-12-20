@@ -14,7 +14,9 @@ export class ReportsComponent {
   reports$ = this.query.selectReports();
   displayedColumns: string[] = ['batch', 'checks', 'suspicious', 'drift'];
 
-  constructor(private facade: ReportsFacade, private query: ReportsQuery) {
+  constructor(private facade: ReportsFacade, private query: ReportsQuery) {}
+
+  ngOnInit() {
     this.facade.loadAllReports();
   }
 }

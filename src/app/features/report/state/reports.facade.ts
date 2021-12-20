@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { ReportsService } from './reports.service';
-import { catchError, filter, switchMap } from 'rxjs/operators';
+import { catchError, filter, switchMap, takeUntil } from 'rxjs/operators';
 import { ReportsStore } from './reports.store';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { RouterQuery } from '@datorama/akita-ng-router-store';
 import { SnackbarService } from '@app/snackbar.service';
 
 @Injectable()
-export class ReportsFacade {
+export class ReportsFacade implements OnDestroy {
+  private destroy: Subject<any> = new Subject<any>();
+
   constructor(
     private service: ReportsService,
     private store: ReportsStore,
@@ -28,7 +30,13 @@ export class ReportsFacade {
             }),
           );
         }),
+        takeUntil(this.destroy),
       )
       .subscribe(reports => this.store.update({ reports }));
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 }
