@@ -33,16 +33,19 @@ export class ReportsQuery extends Query<ReportsState> {
     ]).pipe(
       map(([profilerReports, driftReports, driftedFeatures]) => {
         return profilerReports.map((report: any, index: any) => {
-          const featuresNumber = Object.keys(
-            driftReports[index].featureReports,
-          ).length;
-          return {
-            ...report,
-            driftedFeatures: driftedFeatures[index],
-            featuresNumber,
-          };
+          if (driftReports[index]) {
+            const featuresNumber = Object.keys(
+              driftReports[index].featureReports,
+            ).length;
+            return {
+              ...report,
+              driftedFeatures: driftedFeatures[index],
+              featuresNumber,
+            };
+          }
         });
       }),
+      map(reports => reports.filter((report: Report) => report)),
     );
   }
 
