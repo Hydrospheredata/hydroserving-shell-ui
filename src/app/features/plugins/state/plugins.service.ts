@@ -23,23 +23,21 @@ export class PluginsService {
   apiUrl = environment.apiUrl;
 
   get() {
-    this.http
-      .get<Plugin[]>(`${this.apiUrl}/plugin`)
-      .pipe(
-        catchError(err => {
-          this.snackbar.showMessage(err.message);
-          return of([]);
-        }),
-      )
-      .subscribe(plugins => {
-        this.store.set(plugins);
-        plugins.forEach(p => this.activate(p));
-      });
+    return this.http.get<Plugin[]>(`${this.apiUrl}/plugin`).pipe(
+      catchError(err => {
+        this.snackbar.showMessage(err.message);
+        return of([]);
+      }),
+    );
+  }
+
+  set(plugins: Plugin[]) {
+    this.store.set(plugins);
+    plugins.forEach(p => this.activate(p));
   }
 
   activate(plugin: Plugin) {
     this.store.update(plugin.name, plugin => ({ ...plugin, state: 'active' }));
-
     this.registerPluginIntoPlatform(plugin);
   }
 

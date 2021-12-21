@@ -18,14 +18,15 @@ export class ModelsService {
   apiUrl = environment.apiUrl;
 
   get() {
-    this.http
-      .get<Model[]>(`${this.apiUrl}/model`)
-      .pipe(
-        catchError(err => {
-          this.snackbar.showMessage(err.message);
-          return of([]);
-        }),
-      )
-      .subscribe(mvs => this.store.update({ models: mvs, loaded: true }));
+    return this.http.get<Model[]>(`${this.apiUrl}/model`).pipe(
+      catchError(err => {
+        this.snackbar.showMessage(err.message);
+        return of([]);
+      }),
+    );
+  }
+
+  set(models: Model[] = []) {
+    this.store.update({ models: models, loaded: true });
   }
 }
