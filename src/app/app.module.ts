@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -31,6 +31,12 @@ import {
   IconsRegistryService,
 } from '@hydrosphere/hs-ui-kit';
 import { SharedModule } from '@app/shared/shared.module';
+import { AppService } from './state/app.service';
+import { Observable } from 'rxjs';
+
+function initializeAppFactory(service: AppService): () => Observable<any> {
+  return () => service.preloadData();
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -62,6 +68,12 @@ import { SharedModule } from '@app/shared/shared.module';
       provide: HS_ABSOLUTE_URL,
       useFactory: (href: any) => hsAbsoluteUrlFactory(href),
       deps: [APP_BASE_HREF],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAppFactory,
+      deps: [AppService],
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

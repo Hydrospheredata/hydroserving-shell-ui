@@ -23,7 +23,13 @@ import { SignatureComponent } from './components/model-details/components/signat
     ModelInfoComponent,
     SignatureComponent,
   ],
-  imports: [CommonModule, ModelsRoutingModule, MatSnackBarModule, ReportModule, HsUiKitModule],
+  imports: [
+    CommonModule,
+    ModelsRoutingModule,
+    MatSnackBarModule,
+    ReportModule,
+    HsUiKitModule,
+  ],
   exports: [ModelsComponent],
 })
 export class ModelsModule {}
