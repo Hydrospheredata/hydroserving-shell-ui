@@ -3,6 +3,7 @@ import { ModelsQuery } from './state/models.query';
 import { Observable } from 'rxjs';
 import { Model } from '@domain/index';
 import { RedirectService } from '../../redirect.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hs-models',
@@ -15,7 +16,12 @@ export class ModelsComponent {
   constructor(
     private query: ModelsQuery,
     private redirectService: RedirectService,
+    private router: Router,
   ) {
     this.redirectService.redirectToFirst(this.models$, 'models');
+  }
+
+  openRegisterModelForm() {
+    this.router.navigate(['models', 'add']);
   }
 }

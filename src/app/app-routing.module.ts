@@ -8,6 +8,7 @@ import { ReportComponent } from './features/report/report/report.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { CanActivateModelGuard } from './can-activate-model.guard';
 import { CanActivateModelVersionGuard } from './can-activate-model-version.guard';
+import { ModelFormComponent } from '@app/features/models/components/model-form/model-form.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'models',
         children: [
+          {
+            path: 'add',
+            component: ModelFormComponent,
+          },
           {
             path: '',
             component: ModelsComponent,

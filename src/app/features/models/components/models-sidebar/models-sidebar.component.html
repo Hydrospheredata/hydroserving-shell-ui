@@ -1,4 +1,11 @@
 <aside class="p-2 bg-white overflow-scroll h-full">
+  <div class="my-4">
+    <button
+      class="w-full text-center bg-blue-500 text-white py-2 rounded-md text-sm font-medium  flex items-center justify-center"
+      (click)="openRegisterModelForm()">
+      Register model
+    </button>
+  </div>
   <div class="mb-4" *ngFor="let model of models$ | async | keyvalue">
     <div
       class="mv-sidebar__item font-semibold px-4 py-2 mb-2 text-sm text-gray-400 cursor-pointer"

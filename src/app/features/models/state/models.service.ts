@@ -29,4 +29,13 @@ export class ModelsService {
   set(models: Model[] = []) {
     this.store.update({ models: models, loaded: true });
   }
+
+  add(model: Model) {
+    this.store.update({ models: [...this.store.getValue().models, model] });
+  }
+
+  register(req: Model) {
+    const encoded = JSON.stringify(req);
+    return this.http.post(`${this.apiUrl}/model`, encoded);
+  }
 }
