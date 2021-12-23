@@ -1,0 +1,24 @@
+<div [formGroup]="group" class="flex gap-4 items-baseline relative">
+    <mat-form-field class="w-72" appearance="outline">
+        <mat-label>Field name</mat-label>
+        <input matInput formControlName="name" type="text">
+    </mat-form-field>
+    <mat-form-field class="w-64" appearance="outline">
+        <mat-label>Data type</mat-label>
+        <mat-select formControlName="dtype">
+            <mat-option *ngFor="let dtype of dtypes" [value]="dtype">
+                {{dtype}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-64" appearance="outline">
+        <mat-label>Profile</mat-label>
+        <mat-select formControlName="profile">
+            <mat-option *ngFor="let profile of profiles" [value]="profile">
+                {{profile}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <hs-icon class="w-6 h-6 text-gray-300 cursor-pointer hover:text-red-500" name="icon_remove" (click)="onDelete()"
+    ></hs-icon>
+</div>

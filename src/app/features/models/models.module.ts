@@ -12,6 +12,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReportModule } from '../report/report.module';
 import { HsUiKitModule } from '@hydrosphere/hs-ui-kit';
 import { SignatureComponent } from './components/model-details/components/signature/signature.component';
+import { ModelFormComponent } from './components/model-form/model-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FieldGroupComponent } from './components/model-form/components/field-group/field-group.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -22,6 +31,8 @@ import { SignatureComponent } from './components/model-details/components/signat
     ModelDetailsComponent,
     ModelInfoComponent,
     SignatureComponent,
+    ModelFormComponent,
+    FieldGroupComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +40,13 @@ import { SignatureComponent } from './components/model-details/components/signat
     MatSnackBarModule,
     ReportModule,
     HsUiKitModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatDividerModule,
   ],
   exports: [ModelsComponent],
 })
