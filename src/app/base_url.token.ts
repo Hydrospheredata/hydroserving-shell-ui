@@ -19,8 +19,8 @@ export function hsAbsoluteUrlFactory(baseHref: string = ''): string {
 }
 
 function urlForProduction(baseHref: string = '') {
-  const { protocol, hostname } = window.location;
-  return `${protocol}//${hostname}${baseHref}`;
+  const { protocol, hostname, port } = window.location;
+  return `${protocol}//${hostname}${port ? ':' + port : ''}${baseHref}`;
 }
 
 function urlForDeveloping(baseHref: string = '') {
