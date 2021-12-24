@@ -67,7 +67,7 @@ export class ModelFormComponent {
   onSubmit(): void {
     const model = createModel(this.modelForm.value);
 
-    this.service.register(this.modelForm.value).subscribe(
+    this.service.register(model).subscribe(
       () => {
         this.service.add(model);
         this.router.navigate(['/', 'models', model.name, model.version]);
