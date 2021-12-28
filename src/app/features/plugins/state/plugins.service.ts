@@ -58,13 +58,12 @@ export class PluginsService {
     const rootRoutes = this.router.config;
     const rootChildren = rootRoutes![0]?.children;
     const modelsChildren = rootChildren![0]?.children;
-    const modelVersionChildren = modelsChildren![1]?.children;
+    const modelVersionChildren = modelsChildren![2]?.children;
 
     if (!rootChildren) return;
 
-    if (modelsChildren) {
-      modelVersionChildren!.push(route);
-
+    if (modelsChildren && modelVersionChildren) {
+      modelVersionChildren.push(route);
       this.router.resetConfig(rootRoutes);
     }
   }

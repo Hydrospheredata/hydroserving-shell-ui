@@ -10,7 +10,9 @@ export class NavigationWrapperComponent {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   back() {
-    console.log(this.activatedRoute);
-    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+    console.log();
+    this.router.navigate(['..'], {
+      relativeTo: this.activatedRoute.children[0],
+    });
   }
 }
