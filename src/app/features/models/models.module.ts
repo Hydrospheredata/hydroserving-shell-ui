@@ -12,6 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReportModule } from '../report/report.module';
 import { HsUiKitModule } from '@hydrosphere/hs-ui-kit';
 import { SignatureComponent } from './components/model-details/components/signature/signature.component';
+import { NavigationWrapperComponent } from './components/navigation-wrapper/navigation-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SignatureComponent } from './components/model-details/components/signat
     ModelDetailsComponent,
     ModelInfoComponent,
     SignatureComponent,
+    NavigationWrapperComponent,
   ],
   imports: [
     CommonModule,
