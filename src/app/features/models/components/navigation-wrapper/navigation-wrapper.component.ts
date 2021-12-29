@@ -10,14 +10,14 @@ export class NavigationWrapperComponent {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   back() {
-    if (this.router.url.includes('overall-report')) {
-      this.router.navigate(['../../'], {
-        relativeTo: this.activatedRoute.children[0],
-      });
-    } else {
-      this.router.navigate(['..'], {
-        relativeTo: this.activatedRoute.children[0],
-      });
-    }
+    this.router.url.includes('overall-report')
+      ? this.navigate(['../../'])
+      : this.navigate(['..']);
+  }
+
+  navigate(path: any[]) {
+    this.router.navigate(path, {
+      relativeTo: this.activatedRoute.children[0],
+    });
   }
 }
