@@ -96,7 +96,7 @@
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row
-        [routerLink]="['report', row.file | base64]"
+        [routerLink]="['overall-report', row.file | base64]"
         class="cursor-pointer"
         *matRowDef="let row; columns: displayedColumns"
       ></mat-row>
