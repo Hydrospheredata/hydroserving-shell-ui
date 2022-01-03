@@ -42,8 +42,7 @@ export class PluginsService {
   }
 
   private registerPluginIntoPlatform(plugin: Plugin) {
-    const getRoutePath = (pluginRoute: string) =>
-      `:modelName/:modelVersion/${pluginRoute}`;
+    const getRoutePath = (pluginRoute: string) => `${pluginRoute}`;
 
     const metadata = plugin.pluginInfo;
 
@@ -57,18 +56,15 @@ export class PluginsService {
     };
 
     const rootRoutes = this.router.config;
-    if (rootRoutes[0]) {
-      const rootChildrens = rootRoutes[0].children;
+    const rootChildren = rootRoutes![0]?.children;
+    const modelsChildren = rootChildren![0]?.children;
+    const modelVersionChildren = modelsChildren![2]?.children;
 
-      if (rootChildrens) {
-        const modelsChildrens = rootChildrens[0].children;
-        if (modelsChildrens) {
-          const newMV = [...modelsChildrens, route];
-          rootChildrens[0].children = newMV;
+    if (!rootChildren) return;
 
-          this.router.resetConfig(rootRoutes);
-        }
-      }
+    if (modelsChildren && modelVersionChildren) {
+      modelVersionChildren.push(route);
+      this.router.resetConfig(rootRoutes);
     }
   }
 }

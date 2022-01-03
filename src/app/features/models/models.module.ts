@@ -12,6 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReportModule } from '../report/report.module';
 import { HsUiKitModule } from '@hydrosphere/hs-ui-kit';
 import { SignatureComponent } from './components/model-details/components/signature/signature.component';
+import { NavigationWrapperComponent } from './components/navigation-wrapper/navigation-wrapper.component';
 import { ModelFormComponent } from './components/model-form/model-form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,6 +32,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ModelDetailsComponent,
     ModelInfoComponent,
     SignatureComponent,
+    NavigationWrapperComponent,
     ModelFormComponent,
     FieldGroupComponent,
   ],
