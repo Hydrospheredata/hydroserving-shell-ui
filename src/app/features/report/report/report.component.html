@@ -1,4 +1,4 @@
-<div *ngIf="report$ | async as report">
+<div *ngIf="report$ | async as report; else loader">
   <div class="font-bold text-gray-700 text-lg">Overall report</div>
   <div class="mb-9">
     <div class="flex text-sm font-light text-gray-700">
@@ -40,3 +40,10 @@
     </div>
   </div>
 </div>
+
+<ng-template #loader>
+  <div class="flex justify-center">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</ng-template>
+
