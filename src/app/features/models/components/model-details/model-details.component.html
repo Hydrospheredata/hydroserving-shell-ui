@@ -1,4 +1,5 @@
-<div class="flex flex-col">
+<ng-container *ngIf="(model$ && plugins$ && reports$) | async; else loader">
+  <div class="flex flex-col">
     <div class="mb-6 w-full">
       <div class="font-bold pb-4 text-gray-800">Information</div>
       <ng-container *ngIf="model$ | async as model">
@@ -13,19 +14,19 @@
           *ngFor="let p of plugins$ | async"
           [routerLink]="[p.pluginInfo.routePath]"
           class="
-            w-24
-            h-24
-            p-4
-            bg-white
-            shadow-md
-            rounded-md
-            flex flex-col
-            justify-center
-            items-center
-            cursor-pointer
-            hover:bg-blue-50
-            mr-3
-          "
+          w-24
+          h-24
+          p-4
+          bg-white
+          shadow-md
+          rounded-md
+          flex flex-col
+          justify-center
+          items-center
+          cursor-pointer
+          hover:bg-blue-50
+          mr-3
+        "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +50,17 @@
     <div>
       <hs-reports></hs-reports>
     </div>
+
+    <ng-container *ngIf="model$ | async as model">
+      <div class="font-bold py-4 text-gray-800">Signature</div>
+      <hs-signature [signature]="model.signature"></hs-signature>
+    </ng-container>
   </div>
-  <ng-container *ngIf="model$ | async as model">
-    <div class="font-bold py-4 text-gray-800">Signature</div>
-    <hs-signature [signature]="model.signature"></hs-signature>
-  </ng-container>
+</ng-container>
+
+<ng-template #loader>
+  <div class="flex justify-center">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</ng-template>
+

@@ -22,6 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FieldGroupComponent } from './components/model-form/components/field-group/field-group.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     ReactiveFormsModule,
     MatDividerModule,
+    MatProgressSpinnerModule,
   ],
   exports: [ModelsComponent],
 })

@@ -6,6 +6,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { FailedChecksComponent } from './report/components/failed-checks/failed-checks.component';
 import { SuspiciousChecksComponent } from './report/components/suspicious-checks/suspicious-checks.component';
 import { DataDriftComponent } from './report/components/data-drift/data-drift.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { DataDriftComponent } from './report/components/data-drift/data-drift.co
     SuspiciousChecksComponent,
     DataDriftComponent,
   ],
-  imports: [SharedModule, RouterModule],
+  imports: [SharedModule, RouterModule, MatProgressSpinnerModule],
   exports: [ReportsComponent, ReportComponent],
 })
 export class ReportModule {}
