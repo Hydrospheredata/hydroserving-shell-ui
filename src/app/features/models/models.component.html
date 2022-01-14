@@ -1,6 +1,6 @@
 <div *ngIf="(models$ | async)!.length > 0; else noModels" class="h-full flex">
   <hs-models-sidebar></hs-models-sidebar>
-  <div class="flex-grow">
+  <div class="w-full h-full flex-grow">
     <router-outlet></router-outlet>
   </div>
 </div>

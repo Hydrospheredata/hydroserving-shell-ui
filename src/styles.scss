@@ -8,6 +8,10 @@ html {
   height: 100%;
 }
 
+body {
+  @apply bg-gray-100
+}
+
 .snackbar {
   @apply bg-red-500;
 }
