@@ -1,5 +1,5 @@
-<aside class="p-2 bg-white overflow-scroll h-full">
-  <div class="my-4">
+<aside class="h-full w-72 bg-white border-r p-4">
+  <div class="mb-4">
     <button
       class="w-full text-center bg-blue-500 text-white py-2 rounded-md text-sm font-medium  flex items-center justify-center"
       (click)="openRegisterModelForm()">
@@ -12,7 +12,9 @@
       routerLink="{{ model.key }}"
       routerLinkActive="mv-sidebar__item--active"
     >
-      {{ model.key }}
+      <div class="overflow-ellipsis w-52 overflow-hidden">
+        {{ model.key }}
+      </div>
       <div class="text-gray-400 text-xs font-normal">{{model.value.length}} model version</div>
     </div>
   </div>
