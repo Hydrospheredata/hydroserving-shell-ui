@@ -1,7 +1,48 @@
 .summary {
-  @apply flex flex-1 flex-col h-36;
+  @apply bg-white w-96 border rounded shadow relative overflow-hidden px-6 pt-4 pb-2;
+
+  &__status {
+    @apply h-6 w-6 absolute right-14 text-green-700;
+  }
+
+  &__info {
+    @apply h-6 w-6 absolute right-7 text-gray-600;
+  }
+
+  &__value-container {
+    @apply flex items-baseline mt-4;
+  }
+
+  &__value {
+    @apply font-bold text-3xl;
+  }
+
+  &__percent {
+    @apply text-gray-500 text-xs;
+  }
+
   &__title {
-    @apply font-bold mb-2 text-sm text-gray-700;
+    @apply text-sm text-gray-800;
+  }
+
+  &__divider {
+    @apply border-b my-2;
+  }
+
+  &__footer {
+    @apply flex justify-end;
+  }
+
+  &__slash {
+    @apply text-gray-500 text-xs absolute left-5 top-4
+  }
+
+  &__feature-count {
+    @apply text-gray-500 text-xs absolute left-6 top-4
+  }
+
+  &__button {
+    @apply p-2 text-xs text-blue-900 rounded font-bold cursor-pointer hover:bg-blue-50 flex;
   }
 
   &__cell {
@@ -22,65 +63,73 @@
 }
 
 .summary--excellent {
-   & .summary__cell {
-     @apply bg-green-100;
-   }
-   & .summary__status {
-     @apply text-green-800;
-   }
-   & .summary__text {
-     @apply text-green-800;
-   }
+  & .summary__cell {
+    @apply bg-green-100;
+  }
 
-   & .summary__description {
-     @apply text-green-800;
-   }
+  & .summary__status {
+    @apply text-green-800;
+  }
+
+  & .summary__text {
+    @apply text-green-800;
+  }
+
+  & .summary__description {
+    @apply text-green-800;
+  }
 }
 
 .summary--good {
-   & .summary__cell {
-     @apply bg-green-50;
-   }
-   & .summary__status {
-     @apply text-green-800;
-   }
-   & .summary__text {
-     @apply text-green-800;
-   }
+  & .summary__cell {
+    @apply bg-green-50;
+  }
 
-   & .summary__description {
-     @apply text-green-800;
-   }
+  & .summary__status {
+    @apply text-green-800;
+  }
+
+  & .summary__text {
+    @apply text-green-800;
+  }
+
+  & .summary__description {
+    @apply text-green-800;
+  }
 }
 
 .summary--fair {
-   & .summary__cell {
-     @apply bg-yellow-50;
-   }
-   & .summary__status {
-     @apply text-yellow-900;
-   }
-   & .summary__text {
-     @apply text-yellow-900;
-   }
+  & .summary__cell {
+    @apply bg-yellow-50;
+  }
 
-   & .summary__description {
-     @apply text-yellow-900;
-   }
+  & .summary__status {
+    @apply text-yellow-900;
+  }
+
+  & .summary__text {
+    @apply text-yellow-900;
+  }
+
+  & .summary__description {
+    @apply text-yellow-900;
+  }
 }
 
 .summary--bad {
-   & .summary__cell {
-     @apply bg-red-50;
-   }
-   & .summary__status {
-     @apply text-red-900;
-   }
-   & .summary__text {
-     @apply text-red-900;
-   }
+  & .summary__cell {
+    @apply bg-red-50;
+  }
 
-   & .summary__description {
-     @apply text-red-900;
-   }
+  & .summary__status {
+    @apply text-red-900;
+  }
+
+  & .summary__text {
+    @apply text-red-900;
+  }
+
+  & .summary__description {
+    @apply text-red-900;
+  }
 }

@@ -1,19 +1,29 @@
 <div
-  class="summary"
-  [ngClass]="failRatio ? 'summary--bad' : 'summary--excellent'"
+  class='summary'
 >
-  <div class="summary__title">Failed records</div>
-  <div class="summary__cell">
-    <hs-icon class="w-6 h-6 absolute top-2 right-2 text-gray-400" name="info" matTooltip="failed checks"></hs-icon>
-    <div class="summary__status">
-      <ng-container *ngIf="failRatio; else checksPassed">
-        {{ failRatio * 100 | number:'1.2-2' }}%
-      </ng-container>
-    </div>
-    <ng-template #checksPassed>
-      Checks passed
-    </ng-template>
-    <div class="summary__opener" [routerLink]="[
+  <ng-container *ngIf='failRatio > 0; else ok'>
+    <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 absolute right-14 text-red-500' viewBox='0 0 20 20'
+         fill='currentColor'>
+      <path fill-rule='evenodd'
+            d='M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z'
+            clip-rule='evenodd' />
+    </svg>
+  </ng-container>
+  <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 absolute right-7 text-gray-600' fill='none'
+       viewBox='0 0 24 24' stroke='currentColor' matTooltip='Percent of rows contains some failed features'>
+    <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2'
+          d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' />
+  </svg>
+
+  <div class='summary__value-container'>
+    <div class='summary__value'>{{ failRatio * 100 | number:'1.2-2' }}</div>
+    <div class='summary__percent'>%</div>
+  </div>
+
+  <div class='summary__title'>Failed records</div>
+  <div class='summary__divider'></div>
+  <div class='summary__footer'>
+    <div class='summary__button' [routerLink]="[
       '/',
       'models',
       modelName,
@@ -21,7 +31,21 @@
       'profiler',
       file | base64
     ]">
-      see details
+      Show details
+      <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' viewBox='0 0 20 20' fill='currentColor'>
+        <path fill-rule='evenodd'
+              d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
+              clip-rule='evenodd' />
+      </svg>
     </div>
   </div>
 </div>
+
+<ng-template #ok>
+  <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6 absolute right-14 text-green-500' viewBox='0 0 20 20'
+       fill='currentColor'>
+    <path fill-rule='evenodd'
+          d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
+          clip-rule='evenodd' />
+  </svg>
+</ng-template>
