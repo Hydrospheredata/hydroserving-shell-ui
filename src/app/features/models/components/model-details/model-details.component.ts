@@ -11,7 +11,7 @@ import { ReportsQuery } from '@app/features/report/state/reports.query';
 export class ModelDetailsComponent {
   model$ = this.modelsQuery.selectCurrentModel();
   plugins$ = this.pluginsQuery.all$;
-  reports$ = this.reportsQuery.selectReports();
+  reports$ = this.reportsQuery.selectOverallReports();
 
   constructor(
     private modelsQuery: ModelsQuery,

@@ -1,6 +1,6 @@
 <div
   class="summary"
-  [ngClass]="driftedFeatures.length > 0 ? 'summary--bad' : 'summary--excellent'"
+  [ngClass]="driftedFeatures!.length > 0 ? 'summary--bad' : 'summary--excellent'"
 >
   <div class="summary__title">Data drift</div>
   <div class="summary__cell">
@@ -8,7 +8,7 @@
     <div
       class="summary__status"
     >
-      {{ driftedFeatures.length }}/{{featuresNumber}}
+      {{ driftedFeatures?.length }}/{{featuresNumber}}
     </div>
     <div class="summary__opener" [routerLink]="[
       '/',

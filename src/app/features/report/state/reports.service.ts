@@ -4,7 +4,6 @@ import { environment } from '@environments/environment';
 import { combineLatest, Observable } from 'rxjs';
 import { Report } from '@app/features/report/state/report.model';
 import { map, switchMap } from 'rxjs/operators';
-import * as _ from 'lodash';
 
 @Injectable({ providedIn: 'root' })
 export class ReportsService {
@@ -26,7 +25,10 @@ export class ReportsService {
     return this.http.get<Report[]>(`${this.apiUrl}/report`, params);
   }
 
-  getAllReports(modelName: string, modelVersion: number): Observable<Report[]> {
+  getAllReports(
+    modelName: string,
+    modelVersion: number,
+  ): Observable<Report[][]> {
     return this.getFileNames(modelName, modelVersion).pipe(
       switchMap(fileNames =>
         combineLatest(
@@ -35,11 +37,11 @@ export class ReportsService {
           ),
         ),
       ),
-      map(reports => _.flatten(reports)),
       map(reports =>
         reports.sort((a, b) => {
           return (
-            <any>new Date(a.fileModifiedAt) - <any>new Date(b.fileModifiedAt)
+            <any>new Date(b[0].fileModifiedAt) -
+            <any>new Date(a[0].fileModifiedAt)
           );
         }),
       ),
