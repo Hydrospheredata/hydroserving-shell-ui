@@ -26,7 +26,7 @@
     "@datorama/akita": "^6.2.3",
     "@datorama/akita-ng-router-store": "^6.0.2",
     "@hydrosphere/data-types": "0.0.1",
-    "@hydrosphere/hs-ui-kit": "^0.0.13",
+    "@hydrosphere/hs-ui-kit": "^0.0.14",
     "@ngneat/tailwind": "^7.0.3",
     "lodash": "^4.17.21",
     "rxjs": "~6.6.0",
