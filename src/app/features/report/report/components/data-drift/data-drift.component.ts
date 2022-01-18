@@ -7,8 +7,8 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataDriftComponent {
-  @Input() driftedFeatures: string[] | undefined = [];
-  @Input() featuresNumber: number | undefined;
+  @Input() driftedFeatures: string[] = [];
+  @Input() featuresNumber: number = 0;
   @Input() modelName: string = '';
   @Input() modelVersion!: number;
   @Input() file: string = '';
