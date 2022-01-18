@@ -1,19 +1,20 @@
 <div
-  class="summary"
-  [ngClass]="failRatio ? 'summary--bad' : 'summary--excellent'"
+  class='summary'
 >
-  <div class="summary__title">Failed records</div>
-  <div class="summary__cell">
-    <hs-icon class="w-6 h-6 absolute top-2 right-2 text-gray-400" name="info" matTooltip="failed checks"></hs-icon>
-    <div class="summary__status">
-      <ng-container *ngIf="failRatio; else checksPassed">
-        {{ failRatio * 100 | number:'1.2-2' }}%
-      </ng-container>
-    </div>
-    <ng-template #checksPassed>
-      Checks passed
-    </ng-template>
-    <div class="summary__opener" [routerLink]="[
+  <ng-container *ngIf='failRatio > 0; else ok'>
+    <hs-icon name='circle_x' class='h-6 w-6 absolute right-14 text-red-500'></hs-icon>
+  </ng-container>
+  <hs-icon name='info' class='h-6 w-6 absolute right-7 text-gray-600'
+           matTooltip='Percent of rows contains some failed features'></hs-icon>
+  <div class='summary__value-container'>
+    <div class='summary__value'>{{ failRatio * 100 | number:'1.2-2' }}</div>
+    <div class='summary__percent'>%</div>
+  </div>
+
+  <div class='summary__title'>Failed records</div>
+  <div class='summary__divider'></div>
+  <div class='summary__footer'>
+    <div class='summary__button' [routerLink]="[
       '/',
       'models',
       modelName,
@@ -21,7 +22,12 @@
       'profiler',
       file | base64
     ]">
-      see details
+      Show details
+      <hs-icon name='chevron_right' class='h-4 w-4'></hs-icon>
     </div>
   </div>
 </div>
+
+<ng-template #ok>
+  <hs-icon name='check' class='h-6 w-6 absolute right-14 text-green-500'></hs-icon>
+</ng-template>

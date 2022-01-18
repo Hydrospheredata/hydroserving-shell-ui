@@ -1,12 +1,26 @@
-<ng-container *ngIf="susVerdict as suspiciousVerdict">
-  <div class="summary" [ngClass]="'summary--' + suspiciousVerdict">
-    <div class="summary__title">Suspicious records</div>
-    <div class="summary__cell">
-      <hs-icon class="w-6 h-6 absolute top-2 right-2 text-gray-400" name="info" matTooltip="ratio of suspicious records to training data"></hs-icon>
-      <div class="summary__status">
-        {{ susRatio | number:'1.1-1' }}
-      </div>
-      <div class="summary__opener" [routerLink]="[
+<ng-container *ngIf='susVerdict as suspiciousVerdict'>
+  <div class='summary'>
+    <ng-container [ngSwitch]='suspiciousVerdict'>
+      <hs-icon *ngSwitchCase="'excellent'" name='check' class='h-6 w-6 absolute right-14 text-green-500'
+               [matTooltip]='suspiciousVerdict'></hs-icon>
+      <hs-icon *ngSwitchCase="'good'" name='check' class='h-6 w-6 absolute right-14 text-green-400'
+               [matTooltip]='suspiciousVerdict'></hs-icon>
+      <hs-icon *ngSwitchCase="'fair'" name='error_outline' class='h-6 w-6 absolute right-14 text-yellow-500'
+               [matTooltip]='suspiciousVerdict'></hs-icon>
+
+      <hs-icon *ngSwitchDefault name='circle_x' class='h-6 w-6 absolute right-14 text-red-500'
+               [matTooltip]='suspiciousVerdict'></hs-icon>
+    </ng-container>
+    <hs-icon name='info' class='h-6 w-6 absolute right-7 text-gray-600'
+             matTooltip='Ratio of suspicious records to training data'></hs-icon>
+    <div class='summary__value-container'>
+      <div class='summary__value'>{{ susRatio | number:'1.1-1' }}</div>
+    </div>
+
+    <div class='summary__title'>Suspicious records</div>
+    <div class='summary__divider'></div>
+    <div class='summary__footer'>
+      <div class='summary__button' [routerLink]="[
         '/',
         'models',
         modelName,
@@ -14,7 +28,8 @@
         'profiler',
         file | base64
       ]">
-        see details
+        Show details
+        <hs-icon name='chevron_right' class='h-4 w-4'></hs-icon>
       </div>
     </div>
   </div>

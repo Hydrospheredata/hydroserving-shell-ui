@@ -1,16 +1,23 @@
 <div
   class="summary"
-  [ngClass]="driftedFeatures!.length > 0 ? 'summary--bad' : 'summary--excellent'"
 >
-  <div class="summary__title">Data drift</div>
-  <div class="summary__cell">
-    <hs-icon class="w-6 h-6 absolute top-2 right-2 text-gray-400" name="info" matTooltip="drifted features count / total features"></hs-icon>
-    <div
-      class="summary__status"
-    >
-      {{ driftedFeatures?.length }}/{{featuresNumber}}
+  <ng-container *ngIf='driftedFeatures.length > 0; else ok'>
+    <hs-icon name='circle_x' class='h-6 w-6 absolute right-14 text-red-500'></hs-icon>
+  </ng-container>
+  <hs-icon class="h-6 w-6 absolute right-7 text-gray-600'" name="info" matTooltip="drifted features count / total features"></hs-icon>
+
+  <div class='summary__value-container'>
+    <div class='flex relative'>
+      <div class='summary__value'>{{ driftedFeatures.length }}</div>
+      <div class='summary__slash'>/</div>
+      <div class='summary__feature-count'>{{ featuresNumber }}</div>
     </div>
-    <div class="summary__opener" [routerLink]="[
+  </div>
+
+  <div class='summary__title'>Data drift</div>
+  <div class='summary__divider'></div>
+  <div class='summary__footer'>
+    <div class='summary__button' [routerLink]="[
       '/',
       'models',
       modelName,
@@ -18,7 +25,12 @@
       'reports',
       file | base64
     ]">
-      see details
+      Show details
+      <hs-icon name='chevron_right' class='h-4 w-4'></hs-icon>
     </div>
   </div>
 </div>
+
+<ng-template #ok>
+  <hs-icon name='check' class='h-6 w-6 absolute right-14 text-green-500'></hs-icon>
+</ng-template>

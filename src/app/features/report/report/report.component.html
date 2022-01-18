@@ -10,32 +10,37 @@
   <div class="flex mb-6">
     <div class="w-full">
       <div class="flex mt-4 gap-4">
-        <div class="w-full">
-          <hs-failed-checks
-            [failRatio]="report.profilerReport?.batchStats?.failRatio"
-            [modelName]="modelName$ | async"
-            [modelVersion]="modelVersion$ | async"
-            [file]="report.file"
-          ></hs-failed-checks>
-        </div>
-        <div class="w-full">
-          <hs-suspicious-checks
-            [susVerdict]="report.profilerReport?.batchStats?.susVerdict"
-            [susRatio]="report.profilerReport?.batchStats?.susRatio"
-            [modelName]="modelName$ | async"
-            [modelVersion]="modelVersion$ | async"
-            [file]="report.file"
-          ></hs-suspicious-checks>
-        </div>
-        <div class="w-full">
-          <hs-data-drift
-            [driftedFeatures]="report.dataDriftReport?.driftedFeatures"
-            [featuresNumber]="report.dataDriftReport?.featuresNumber"
-            [modelName]="modelName$ | async"
-            [modelVersion]="modelVersion$ | async"
-            [file]="report.file"
-          ></hs-data-drift>
-        </div>
+
+        <ng-container *ngIf='report.profilerReport as profilerReport'>
+          <div class="w-full">
+            <hs-failed-checks
+              [failRatio]="profilerReport.batchStats.failRatio"
+              [modelName]="modelName$ | async"
+              [modelVersion]="modelVersion$ | async"
+              [file]="report.file"
+            ></hs-failed-checks>
+          </div>
+          <div class="w-full">
+            <hs-suspicious-checks
+              [susVerdict]="profilerReport.batchStats.susVerdict"
+              [susRatio]="profilerReport.batchStats.susRatio"
+              [modelName]="modelName$ | async"
+              [modelVersion]="modelVersion$ | async"
+              [file]="report.file"
+            ></hs-suspicious-checks>
+          </div>
+        </ng-container>
+        <ng-container *ngIf='report.dataDriftReport as dataDriftReport'>
+          <div class="w-full">
+            <hs-data-drift
+              [driftedFeatures]="dataDriftReport.driftedFeatures"
+              [featuresNumber]="dataDriftReport.featuresNumber"
+              [modelName]="modelName$ | async"
+              [modelVersion]="modelVersion$ | async"
+              [file]="report.file"
+            ></hs-data-drift>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
