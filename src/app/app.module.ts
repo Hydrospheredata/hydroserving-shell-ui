@@ -20,14 +20,16 @@ import { baseHrefFactory } from './base-href-factory.util';
 import { ModelsModule } from './features/models/models.module';
 import { ReportModule } from '@app/features/report/report.module';
 import {
+  hsIconsArrowLeft,
   hsIconsCheck,
+  hsIconsChevronRight,
+  hsIconsCircleX,
   hsIconsDc,
   hsIconsError,
+  hsIconsErrorOutline,
   hsIconsHelp,
-  hsIconsIconErrorOutline,
-  hsIconsIconLeft,
-  hsIconsIconModels,
   hsIconsInfo,
+  hsIconsModels,
   IconsRegistryService,
 } from '@hydrosphere/hs-ui-kit';
 import { SharedModule } from '@app/shared/shared.module';
@@ -81,14 +83,17 @@ function initializeAppFactory(service: AppService): () => Observable<any> {
 export class AppModule {
   constructor(private iconRegistry: IconsRegistryService) {
     this.iconRegistry.registerIcons([
-      hsIconsIconLeft,
-      hsIconsIconModels,
+      hsIconsArrowLeft,
       hsIconsDc,
-      hsIconsIconErrorOutline,
+      hsIconsError,
       hsIconsCheck,
       hsIconsError,
       hsIconsHelp,
       hsIconsInfo,
+      hsIconsModels,
+      hsIconsChevronRight,
+      hsIconsCircleX,
+      hsIconsErrorOutline,
     ]);
   }
 }
