@@ -7,6 +7,7 @@ import { FailedChecksComponent } from './report/components/failed-checks/failed-
 import { SuspiciousChecksComponent } from './report/components/suspicious-checks/suspicious-checks.component';
 import { DataDriftComponent } from './report/components/data-drift/data-drift.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     SuspiciousChecksComponent,
     DataDriftComponent,
   ],
-  imports: [SharedModule, RouterModule, MatProgressSpinnerModule],
+  imports: [
+    SharedModule,
+    RouterModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+  ],
   exports: [ReportsComponent, ReportComponent],
 })
 export class ReportModule {}

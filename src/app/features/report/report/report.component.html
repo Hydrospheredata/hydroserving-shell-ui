@@ -12,7 +12,7 @@
       <div class="flex mt-4 gap-4">
         <div class="w-full">
           <hs-failed-checks
-            [failRatio]="report.batchStats.failRatio"
+            [failRatio]="report.profilerReport?.batchStats?.failRatio"
             [modelName]="modelName$ | async"
             [modelVersion]="modelVersion$ | async"
             [file]="report.file"
@@ -20,8 +20,8 @@
         </div>
         <div class="w-full">
           <hs-suspicious-checks
-            [susVerdict]="report.batchStats.susVerdict"
-            [susRatio]="report.batchStats.susRatio"
+            [susVerdict]="report.profilerReport?.batchStats?.susVerdict"
+            [susRatio]="report.profilerReport?.batchStats?.susRatio"
             [modelName]="modelName$ | async"
             [modelVersion]="modelVersion$ | async"
             [file]="report.file"
@@ -29,8 +29,8 @@
         </div>
         <div class="w-full">
           <hs-data-drift
-            [driftedFeatures]="report.driftedFeatures"
-            [featuresNumber]="report.featuresNumber"
+            [driftedFeatures]="report.dataDriftReport?.driftedFeatures"
+            [featuresNumber]="report.dataDriftReport?.featuresNumber"
             [modelName]="modelName$ | async"
             [modelVersion]="modelVersion$ | async"
             [file]="report.file"

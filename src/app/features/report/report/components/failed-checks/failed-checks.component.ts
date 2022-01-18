@@ -7,7 +7,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FailedChecksComponent {
-  @Input() failRatio: number = 0;
+  @Input() failRatio: number | undefined = 0;
   @Input() modelName: string = '';
   @Input() modelVersion!: number;
   @Input() file: string = '';
