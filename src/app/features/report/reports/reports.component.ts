@@ -5,9 +5,7 @@ import {
   AfterViewInit,
   ViewChild,
 } from '@angular/core';
-import { ReportsFacade } from '@app/features/report/state/reports.facade';
 import { ReportsQuery } from '@app/features/report/state/reports.query';
-import { ReportsService } from '@app/features/report/state/reports.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { OverallReport } from '@app/features/report/state/report.model';
 import { MatPaginator } from '@angular/material/paginator';
@@ -16,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'hs-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss'],
-  providers: [ReportsFacade, ReportsQuery, ReportsService],
+  providers: [ReportsQuery],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReportsComponent implements OnInit, AfterViewInit {
@@ -32,10 +30,9 @@ export class ReportsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private facade: ReportsFacade, private query: ReportsQuery) {}
+  constructor(private query: ReportsQuery) {}
 
   ngOnInit() {
-    this.facade.loadAllReports();
     this.reports$.subscribe(reports => {
       this.dataSource = new MatTableDataSource<OverallReport>(reports);
       this.dataSource.paginator = this.paginator;

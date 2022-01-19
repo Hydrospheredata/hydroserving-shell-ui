@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FieldGroupComponent } from './components/model-form/components/field-group/field-group.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import ModelDetailsPageComponent from '@app/features/models/components/model-details/model-details-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ModelsTableComponent,
     ModelStatusComponent,
     ModelDetailsComponent,
+    ModelDetailsPageComponent,
     ModelInfoComponent,
     SignatureComponent,
     NavigationWrapperComponent,
