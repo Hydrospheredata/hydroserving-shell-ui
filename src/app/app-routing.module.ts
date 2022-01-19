@@ -10,6 +10,7 @@ import { CanActivateModelVersionGuard } from './can-activate-model-version.guard
 import { ModelFormComponent } from '@app/features/models/components/model-form/model-form.component';
 import { NavigationWrapperComponent } from '@app/features/models/components/navigation-wrapper/navigation-wrapper.component';
 import { ReportComponent } from '@app/features/report/report/report.component';
+import ModelDetailsPageComponent from '@app/features/models/components/model-details/model-details-page.component';
 
 const routes: Routes = [
   {
@@ -40,12 +41,18 @@ const routes: Routes = [
             children: [
               {
                 path: '',
-                component: ModelDetailsComponent,
-                canActivate: [CanActivateModelVersionGuard],
-              },
-              {
-                path: 'overall-report/:file',
-                component: ReportComponent,
+                component: ModelDetailsPageComponent,
+                children: [
+                  {
+                    path: '',
+                    component: ModelDetailsComponent,
+                    canActivate: [CanActivateModelVersionGuard],
+                  },
+                  {
+                    path: 'overall-report/:file',
+                    component: ReportComponent,
+                  },
+                ],
               },
             ],
           },
