@@ -125,14 +125,13 @@
         *matRowDef="let row; columns: displayedColumns"
       ></mat-row>
     </mat-table>
-    <mat-paginator [pageSizeOptions]="[5, 20, 100]" showFirstLastButtons>
-    </mat-paginator>
-
     <div
       *ngIf="reports.length === 0"
-      class="font-medium text-gray-400 p-4 text-center bg-white mb-4 "
+      class="font-medium text-gray-400 p-4 text-center bg-white border-b border-gray-300"
     >
       Overall reports not found
     </div>
+    <mat-paginator [pageSizeOptions]="[5, 20, 100]" showFirstLastButtons>
+    </mat-paginator>
   </div>
 </div>
