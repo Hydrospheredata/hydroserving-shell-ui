@@ -24,6 +24,7 @@ import { FieldGroupComponent } from './components/model-form/components/field-gr
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import ModelDetailsPageComponent from '@app/features/models/components/model-details/model-details-page.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import ModelDetailsPageComponent from '@app/features/models/components/model-det
     ReactiveFormsModule,
     MatDividerModule,
     MatProgressSpinnerModule,
+    ScrollingModule,
   ],
   exports: [ModelsComponent],
 })
