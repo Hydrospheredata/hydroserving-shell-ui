@@ -7,16 +7,24 @@
         <th>dtype</th>
         <th>shape</th>
       </tr>
+    </table>
+    <cdk-virtual-scroll-viewport class="scroll_viewport" itemSize="50">
+      <table class="w-full">
+        <tbody>
+          <tr>
+            <td class="uppercase font-bold text-sm text-gray-800">Inputs</td>
+          </tr>
+          <ng-container *ngIf="signature?.inputs?.length; else notFound">
+            <ng-container
+              [ngTemplateOutlet]="fieldsTmp"
+              [ngTemplateOutletContext]="{ $implicit: signature?.inputs }"
+            ></ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </cdk-virtual-scroll-viewport>
+    <table class="w-full">
       <tbody>
-        <tr>
-          <td class="uppercase font-bold text-sm text-gray-800">Inputs</td>
-        </tr>
-        <ng-container *ngIf="signature?.inputs?.length; else notFound">
-          <ng-container
-            [ngTemplateOutlet]="fieldsTmp"
-            [ngTemplateOutletContext]="{ $implicit: signature?.inputs }"
-          ></ng-container>
-        </ng-container>
         <tr>
           <td class="uppercase font-bold text-sm text-gray-800">outputs</td>
         </tr>
